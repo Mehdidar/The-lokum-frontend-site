@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu – The Lokum</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #141210 0%, #0a0908 60%);
+  color: #efe4d8;
+  overflow-x: hidden;
+}
+
+/* Floating Background Texture */
+.floating-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 30%, rgba(192,138,80,0.08), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(192,138,80,0.05), transparent 60%);
+  animation: floatBg 20s infinite alternate ease-in-out;
+  z-index: -1;
+}
+
+@keyframes floatBg {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-40px); }
+}
+
+/* Hero */
+.menu-hero {
+  text-align: center;
+  padding: 120px 20px 60px;
+}
+
+.menu-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  color: #c08a50;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.menu-hero p {
+  color: rgba(239,228,216,0.7);
+  letter-spacing: 1px;
+}
+
+/* Gallery */
+.menu-gallery {
+  max-width: 1300px;
+  margin: 80px auto;
+  padding: 0 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.menu-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.menu-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-item img {
+  width: 100%;
+  border-radius: 22px;
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(192,138,80,0.15);
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.menu-item img:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow:
+    0 30px 70px rgba(0,0,0,0.8),
+    0 0 25px rgba(192,138,80,0.3);
+}
+
+/* Modal Viewer */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.95);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 20px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #c08a50;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/* Back Button */
+.back-btn {
+  display: inline-block;
+  margin: 80px 0;
+  color: #c08a50;
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  letter-spacing: 4px;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .menu-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-hero h1 {
+    font-size: 2.3rem;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="floating-bg"></div>
+
+<div class="menu-hero">
+  <h1>Our Menu</h1>
+  <p>Authentic Turkish & Anatolian flavours curated with tradition.</p>
+</div>
+
+<div class="menu-gallery">
+
+  <div class="menu-item"><img src="The Lokum Menu (2)/1.png" alt="Menu Page 1"></div>
+  <div class="menu-item"><img src="The Lokum Menu (2)/2.png" alt="Menu Page 2"></div>
+  <div class="menu-item"><img src="The Lokum Menu (2)/3.png" alt="Menu Page 3"></div>
+  <div class="menu-item"><img src="The Lokum Menu (2)/4.png" alt="Menu Page 4"></div>
+  <div class="menu-item"><img src="The Lokum Menu (2)/5.png" alt="Menu Page 5"></div>
+  <div class="menu-item"><img src="The Lokum Menu (2)/6.png" alt="Menu Page 6"></div>
+  <div class="menu-item"><img src="The Lokum Menu (2)/7.png" alt="Menu Page 7"></div>
+  <div class="menu-item"><img src="The Lokum Menu (2)/8.png" alt="Menu Page 8"></div>
+  <div class="menu-item"><img src="The Lokum Menu (2)/9.png" alt="Menu Page 9"></div>
+
+</div>
+
+<div style="text-align:center;">
+  <a href="index.html" class="back-btn">← Back to The Lokum</a>
+</div>
+
+<!-- Modal -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
+<script>
+
+// Fade in on scroll
+const items = document.querySelectorAll('.menu-item');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.2 });
+
+items.forEach(item => observer.observe(item));
+
+// Image Modal Viewer
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const closeBtn = document.querySelector(".close");
+
+document.querySelectorAll(".menu-item img").forEach(img => {
+  img.onclick = function() {
+    modal.style.display = "block";
+    modalImg.src = this.src;
+  }
+});
+
+closeBtn.onclick = function() {
+  modal.style.display = "none";
+};
+
+modal.onclick = function() {
+  modal.style.display = "none";
+};
+
+</script>
+
+</body>
+</html>

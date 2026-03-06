@@ -1,0 +1,72 @@
+The Lokum – Anatolia & Beyond
+The Lokum is a high-end, premium restaurant website designed to showcase the "Fire & Tradition" of Anatolian and Turkish cuisine. Located in Bengaluru, India, the digital experience mirrors the restaurant's focus on heritage, inherited techniques, and authentic Turkish hospitality.
+
+🍽️ Project Overview
+The website serves as a luxury digital storefront featuring:
+
+Immersive Visuals: High-quality video backgrounds and cinematic zoom effects in the hero section.
+
+Brand Philosophy: A dedicated "Our Story" section detailing the restaurant's origins and culinary intention.
+
+Seasonal Features: Integrated Ramzan Special sections highlighting curated platters and traditional dishes.
+
+Digital Menu: A standalone, interactive menu page designed for high visual impact.
+
+Premium Interactions: Sophisticated animations and smooth scrolling powered by GSAP.
+
+ Key Features
+1. Advanced Animation System
+The site utilizes the GreenSock Animation Platform (GSAP) and ScrollTrigger for high-performance, scroll-based animations.
+
+Smooth Scrolling: Implementation of ScrollSmoother for a luxurious browsing feel.
+
+Dynamic Gallery: An "Ultra Smooth Gallery" with 3D perspective shifts and active item scaling.
+
+Interactive Navigation: A responsive navbar that adapts on scroll and includes an asymmetric hamburger menu with unique "X" transitions.
+
+2. Specialized Components
+Ramzan Offer Popup: A timed, auto-opening popup for seasonal promotions with built-in auto-close functionality.
+
+Iftar Timer: Real-time logic for countdowns during the Ramzan season.
+
+Image Modal Viewer: A custom modal system for high-resolution menu viewing.
+
+Lazy Loading: Native intersection observers to optimize image loading performance.
+
+3. Luxury Design Aesthetic
+Color Palette: Deep blacks (#0a0908), soft creams (#efe4d8), and bronze/gold accents (#c08a50).
+
+Typography: An elegant pairing of Playfair Display (Serif) for headings and Inter (Sans-serif) for body text.
+
+Technical Stack
+HTML5: Semantic structure for SEO and accessibility.
+
+CSS3 (Post-modern): Utilizes CSS variables, complex gradients, 3D transforms, and advanced backdrop filters.
+
+JavaScript (ES6+): Custom modular architecture with an Immediately Invoked Function Expression (IIFE) for scope protection.
+
+Libraries:
+
+GSAP (Core): Animation engine.
+
+ScrollTrigger: Scroll-based interaction.
+
+ScrollSmoother: Premium scrolling physics.
+
+📁 File Structure
+index.html: The primary landing page containing the story, gallery, and seasonal sections.
+
+menu.html: The visual menu experience with floating background textures.
+
+style.css: The central design system containing luxury variables and responsive layout logic.
+
+script.js: The engine managing animations, popups, and interactive navigation.
+
+ Setup Instructions
+Clone the repository to your local environment.
+
+Asset Hosting: Ensure the images/ and videos/ folders contain the high-quality media referenced in the HTML (e.g., logo-web.png, fallback-bg.jpg, and the hero MP4).
+
+Local Server: Due to GSAP's ScrollTrigger and external script loading, it is recommended to run the project via a local server (like Live Server in VS Code) for the best performance.
+
+Developed by Mehdi – © 2026 THE LOKUM

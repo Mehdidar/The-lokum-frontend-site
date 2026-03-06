@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lokum – Anatolia & Beyond</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@400;500&display=swap"
+    rel="stylesheet">
+  <!-- GSAP CORE -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <style>
+    /* Enables smooth scrolling when clicking links */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+  <!-- ScrollSmoother -->
+  <script src="https://unpkg.com/gsap@3/dist/ScrollSmoother.min.js"></script>
+</head>
+
+<body>
+
+
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <nav class="navbar">
+        <div class="nav-inner">
+
+          <a href="#hero" class="nav-logo">
+            <img src="images/logo-web.png" alt="The Lokum">
+          </a>
+
+          <ul class="nav-links-desktop">
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="#gallery">Space</a></li>
+            <li><a href="#ramzan-specials">Ramzan Specials</a></li>
+
+            <li><a href="#contact-info">Contact</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <a href="#reserve" class="nav-reserve">Book Table</a>
+
+            <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+              <span class="menu-label">Menu</span>
+              <div class="ham-box">
+                <span class="ham-line line-top"></span>
+                <span class="ham-line line-bottom"></span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- ✅ Mobile Overlay (ONLY ONE) -->
+      <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-links">
+          <a href="#hero" class="mobile-link">Home</a>
+          <a href="#about" class="mobile-link">Our Story</a>
+          <a href="#ramzan-specials" class="mobile-link">Ramzan Specials</a>
+          <a href="menu.html" class="mobile-link">The Menu</a>
+          <a href="#gallery" class="mobile-link">Gallery</a>
+          <a href="#reserve" class="mobile-link highlight">Reservations</a>
+
+        </div>
+
+        <div class="mobile-footer">
+          <div class="footer-logo">
+            <img src="images/logo final white.png" alt="Brand Logo" href="#hero">
+          </div>
+          <div class="footer-divider"></div>
+          <span class="location-text">Bengaluru, India</span>
+        </div>
+      </div>
+      <header class="hero" id="hero">
+        <div class="video-container">
+          <video class="hero-video" autoplay muted loop playsinline poster="images/fallback-bg.jpg">
+            <source
+              src="videos/Come on innnn ✨We’ve just opened, and you’re early enough to be part of the beginning — the firs.mp4"
+              type="video/mp4">
+          </video>
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+          <div class="hero-logo-wrapper">
+            <img src="images/logo final white.png" alt="Lokum Logo" class="hero-logo">
+          </div>
+
+          <div class="hero-text-box">
+            <span class="hero-subtitle">Welcome to</span>
+            <h1 class="hero-title">The Lokum</h1>
+            <div class="hero-divider"></div>
+            <p class="hero-desc">Anatolia & Beyond</p>
+          </div>
+        </div>
+
+        <a href="#about" class="scroll-indicator">
+          <span class="scroll-text">Explore</span>
+          <div class="scroll-line-container">
+            <div class="scroll-line"></div>
+          </div>
+        </a>
+      </header>
+
+      <section id="about" class="section-padding">
+        <div class="container-narrow">
+          <span class="section-tag">Philosophy</span>
+          <h2 class="section-heading">Fire & Tradition</h2>
+          <p class="section-text">
+            'The Lokum' didn’t start as a restaurant idea. It started as a feeling; one of those things you taste once
+            on a
+            trip and then spend years wishing you could have again.
+
+            For us, that feeling was Turkey. Real Turkey. Not the postcard version.
+
+            We wanted the food that comes out of family kitchens… passed down quietly, guarded almost, because the
+            recipe
+            means something to the people who hold it.
+
+            When our chef arrived from Turkey, he brought with him the traditions he was raised on, the rituals,
+            inherited
+            techniques, and the flavours shaped across generations. That heritage forms the foundation of our Anatolian
+            cuisine.
+
+            Every dish at 'The Lokum' starts with a moment of quiet intention. Ingredients chosen by touch, by instinct,
+            by
+            that small jolt you feel when something is just right. Spices crushed low and slow, releasing a warmth that
+            rises softly. Meats left to rest until they yield, just enough, under the slightest pressure. We cook close
+            to
+            the flame, and we let the fire leave its mark. A hint of smoke, a whisper of char, flavours that don’t rush
+            forward… they unfold. They wait for you to notice.
+
+            Our space reflects the same intention. The lighting, the textures, the small details we obsessed over. It’s
+            a
+            space designed so you can slow down, breathe, and experience Turkish hospitality in its truest form.
+
+            'The Lokum' is our way of bringing a little Turkish magic to Bangalore. It's food that carries a whole
+            country
+            in its heart.
+
+            Welcome. We’re really glad you’re here
+          </p>
+
+        </div>
+
+
+      </section>
+
+      <section id="ramzan-specials" class="section-padding ramzan-section">
+
+        <div class="background-photo"></div>
+
+        <div class="container-narrow">
+          <span class="section-tag">Seasonal Delight</span>
+          <h2 class="section-heading-light">Ramzan Specials</h2>
+
+          <!-- Poetic Intro -->
+          <p class="ramzan-poetic">
+            “At The Lokum, Ramzan is a celebration of flavors and tradition. Each dish tells a story — of family
+            kitchens,
+            timeless recipes, and the warmth of shared moments. As the sun sets, we invite you to gather and break your
+            fast
+            with a menu inspired by Turkish tradition and hospitality.”
+          </p>
+
+          <!-- Ramzan Platter Description -->
+          <div class="ramzan-platter">
+            <h3>Ramzan Platter – Curated for Two</h3>
+
+            <p>
+              Thoughtfully crafted for sharing, our Ramzan Platter brings together the richness of Anatolian cuisine.
+              Designed for two guests, it offers a harmonious balance of grilled specialties, comforting soups,
+              refreshing salads, and sweet endings.
+            </p>
+
+            <ul class="platter-list">
+              <li><strong>Grills:</strong> Adana Kebab, Urfa Kebab, Shish Tawook, Lamb & Mandi</li>
+              <li><strong>Soup:</strong> Traditional Mutton Soup</li>
+              <li><strong>Mezes:</strong> Hummus served with warm Pita Bread</li>
+              <li><strong>Starters:</strong> Sigara Börek, Chicken Fingers & Fries</li>
+              <li><strong>Salad:</strong> Fattoush with Dates & Fresh Cut Fruits</li>
+              <li><strong>Dessert:</strong> Sutlaç (Turkish Rice Pudding)</li>
+              <li><strong>Drinks:</strong> Osmanlı Sherbet & Turkish Kahwa</li>
+            </ul>
+
+            <p class="platter-closing">
+              A feast that nourishes both body and soul — bringing families together in the true spirit of Ramzan.
+            </p>
+          </div>
+
+          <!-- Instagram Reel -->
+          <div class="ramzan-reel">
+            <iframe src="https://www.instagram.com/reel/DU5aFwdEq_x/embed" frameborder="0" scrolling="no"
+              allowfullscreen
+              allow="autoplay; clipboard-write; encrypted-media; encrypted-media; picture-in-picture; web-share">
+            </iframe>
+          </div>
+
+        </div>
+      </section>
+      <section id="menu" class="section-dark culinary-section">
+        <div class="container-narrow">
+
+          <h2 class="section-heading-light">Culinary Journey</h2>
+          <p class="section-text-light">
+            From the bustling streets of Istanbul to the quiet coasts of the Aegean.
+          </p>
+
+          <div class="culinary-grid">
+
+            <!-- 1 -->
+            <div class="culinary-card">
+              <img src="food/tepsi-2.webp" loading="lazy" decoding="async" alt="Anatolian Tepsi Kebab">
+              <div class="culinary-overlay">
+                <h3>Anatolian Tepsi Kebab</h3>
+                <span>Slow-baked minced lamb, peppers, tomato & aromatic spices</span>
+              </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="culinary-card">
+              <img src="food/hummus 2.58.43 PM.webp" alt="Traditional Hummus" loading="lazy" decoding="async">
+              <div class="culinary-overlay">
+                <h3>Traditional Hummus</h3>
+                <span>Stone-ground chickpeas, tahini, lemon & extra virgin olive oil</span>
+              </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="culinary-card">
+              <img src="food/sis tavuk 2.58.44 PM.webp" alt="Şiş Tavuk" loading="lazy" decoding="async">
+              <div class="culinary-overlay">
+                <h3>Şiş Tavuk</h3>
+                <span>Charcoal-grilled marinated chicken skewers & smoked yogurt</span>
+              </div>
+            </div>
+
+            <!-- 4 (NEW) -->
+            <div class="culinary-card">
+              <img src="food/mutton hummus 2.56.28 PM.webp" alt="Mutton Hummus" loading="lazy" decoding="async">
+              <div class="culinary-overlay">
+                <h3>Mutton Hummus</h3>
+                <span>Tender slow-cooked lamb over warm hummus & spiced butter</span>
+              </div>
+            </div>
+
+            <!-- 5 (NEW) -->
+            <div class="culinary-card">
+              <img src="food/kymlie pide 2.58.44 PM.webp" alt="Kıymalı Pide" loading="lazy" decoding="async">
+              <div class="culinary-overlay">
+                <h3>Kıymalı Pide</h3>
+                <span>Wood-fired flatbread topped with seasoned minced beef & herbs</span>
+              </div>
+            </div>
+
+            <!-- 6 (NEW) -->
+            <div class="culinary-card">
+              <img src="food/chicken alferdo.webp" alt="Crumb Fried Special" loading="lazy" decoding="async">
+              <div class="culinary-overlay">
+                <h3>Crumb Fried Special</h3>
+                <span>Golden fried bites served with house-made garlic yogurt</span>
+              </div>
+            </div>
+
+            <!-- 7 (NEW DESSERT) -->
+            <div class="culinary-card">
+              <img src="food/sutlac-2.webp" alt="Sütlaç" loading="lazy">
+              <div class="culinary-overlay">
+                <h3>Sütlaç</h3>
+                <span>Traditional baked rice pudding with caramelized top & cinnamon</span>
+              </div>
+            </div>
+
+            <!-- adnana -->
+            <div class="culinary-card">
+              <img src="food/adanan.webp" loading="lazy" decoding="async" alt="Sütlaç">
+              <div class="culinary-overlay">
+                <h3>Adana Kebab</h3>
+                <span>Spicy minced lamb skewers with traditional Turkish spices</span>
+              </div>
+            </div>
+
+            <div class="culinary-card">
+              <img src="food/testi kebabab 2.58.45 PM.webp" alt="Sütlaç" loading="lazy" decoding="async">
+              <div class="culinary-overlay">
+                <h3>Testi Kebab</h3>
+                <span>Slow-cooked lamb in a clay pot with aromatic spices</span>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <br>
+
+
+          <div class="menu-actions">
+            <a href="menu.html" target="_blank" rel="noopener" class="btn-outline">View Full Menu</a>
+            <br>
+            <a href="https://drive.google.com/drive/folders/14kx1fKw83hNUSuvEbh6V617DU1KVlGL0?usp=sharing"
+              target="_blank" rel="noopener" class="btn-image">
+              <span>View More Food Images</span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section id="gallery" class="section-padding">
+        <h1 class="space">SPACES</h1>
+        <div class="gallery-wrapper">
+          <div class="gallery-track">
+            <div class="gallery-item">
+              <img src="images/outside.jpg" alt="Space 1" data-speed="1.2">
+            </div>
+
+            <div class="gallery-item">
+              <img src="images/Pic 13 V1.webp" alt="Space 1" data-speed="1.2">
+            </div>
+
+            <div class="gallery-item">
+              <img src="images/Pic 18 V1.jpg" alt="Space 1" data-speed="1.2">
+            </div>
+
+            <div class="gallery-item">
+              <img src="images/DSC03031.00000000.jpg" alt="Space 2" data-speed="1.2">
+            </div>
+
+            <div class="gallery-item">
+              <img src="images/Pic 2 V1.jpg" alt="Space 3" data-speed="1.2">
+            </div>
+
+            <div class="gallery-item">
+              <img src="images/Pic 12 V1.jpg" alt="Space 4" data-speed="1.2">
+            </div>
+
+            <div class="gallery-item">
+              <img src="images/Pic 3 V2.jpg" alt="Space 5" data-speed="1.2">
+            </div>
+
+            <div class="gallery-item">
+              <img src="images/Pic 9 V1.jpg" alt="Space 7" data-speed="1.2">
+            </div>
+
+            <div class="gallery-item">
+              <img src="images/outside2.jpg" alt="Space 8" data-speed="1.2">
+            </div>
+
+
+            <div class="gallery-item">
+              <img src="images/shakir.jpg" alt="Space 8" data-speed="1.2">
+            </div>
+            <div class="gallery-item">
+              <img src="images/ground 1.jpg" alt="Space 8" data-speed="1.2">
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+      <section id="majlis" class="section-padding majlis-section">
+        <div class="luxury-glow"></div>
+
+        <div class="container-narrow">
+          <div class="majlis-header-wrap">
+            <span class="section-tag-gold" data-aos="fade-up">A Heritage Gathering</span>
+            <h2 class="section-heading-premium" data-aos="fade-up" data-aos-delay="100">The Majlis</h2>
+
+            <div class="premium-divider"></div>
+
+            <p class="majlis-text-refined" data-aos="fade-up" data-aos-delay="200">
+              The Majlis at The Lokum is a sanctuary of togetherness — where conversations flow,
+              time slows, and tradition comes alive. Inspired by the age-old Middle Eastern
+              gathering, it is a curated space for shared meals, quiet reflections, and
+              unforgettable evenings under a canopy of warm, amber light.
+            </p>
+          </div>
+
+          <div class="majlis-grid">
+            <div class="majlis-card-wrapper" data-aos="fade-up" data-aos-delay="300">
+              <div class="majlis-card">
+                <div class="card-inner-border"></div>
+                <img src="images/Pic 9 V1.webp" alt="Majlis seating at The Lokum" loading="lazy">
+                <div class="card-caption">Private Intimacy</div>
+              </div>
+            </div>
+
+            <div class="majlis-card-wrapper" data-aos="fade-up" data-aos-delay="450">
+              <div class="majlis-card">
+                <div class="card-inner-border"></div>
+                <img src="images/majlis.webp" alt="Traditional Majlis ambience" loading="lazy">
+                <div class="card-caption">Shared Heritage</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="continental-specials" class="chef-section">
+        <div class="container-narrow">
+          <span class="section-tag">Exclusives</span>
+          <h2 class="section-heading-light">Continental Specials</h2>
+          <p class="section-text-light">Handpicked signature dishes from around the world, curated by our chefs.</p>
+
+          <div class="chef-grid">
+            <div class="chef-card" data-tilt>
+              <div class="card-spotlight"></div>
+              <img src="food/chicken cesar salad.webp" alt="Chicken Caesar Salad">
+              <div class="card-overlay">
+                <h3>Chicken Caesar Salad</h3>
+                <p>Crisp romaine lettuce tossed with grilled chicken, Parmesan cheese, croutons, and classic Caesar
+                  dressing.</p>
+              </div>
+            </div>
+
+            <div class="chef-card" data-tilt>
+              <div class="card-spotlight"></div>
+              <img src="food/crum fried .webp" alt="Crumb Fried Chicken">
+              <div class="card-overlay">
+                <h3>Crumb Fried Chicken</h3>
+                <p>Golden, crispy fried chicken with a perfect blend of spices and herbs.</p>
+              </div>
+            </div>
+
+            <div class="chef-card" data-tilt>
+              <div class="card-spotlight"></div>
+              <img src="food/chicken alferdo.webp" alt="Chicken Alfredo">
+              <div class="card-overlay">
+                <h3>Chicken Alfredo</h3>
+                <p>Succulent chicken strips served over fettuccine pasta with a creamy Parmesan Alfredo sauce and fresh
+                  herbs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="videos" class="section-padding video-section">
+        <div class="container-narrow">
+
+          <span class="section-tag">Visuals</span>
+          <h2 class="section-heading-light">Some of Our Videos & Reels</h2>
+          <p class="section-text-light">
+            Experience our dishes and ambience in motion.
+          </p>
+
+          <div class="video-grid">
+
+            <!-- VIDEO 1 -->
+            <div class="video-card">
+              <video autoplay muted loop playsinline>
+                <source src="videos/8ff15819-de09-4abe-b30d-b04510e35471 2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+
+              <div class="video-overlay">
+                <div class="overlay-content">
+                  <h3>Lokum Ambience</h3>
+                  <span>“Taste Tradition. Savor Lokum.”</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIDEO 2 -->
+            <div class="video-card">
+              <video autoplay muted loop playsinline>
+                <source src="videos/lokum.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+
+              <div class="video-overlay">
+                <div class="overlay-content">
+                  <h3>Culinary Craft</h3>
+                  <span>Lokum — Where Every Bite Tells a Story</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+        <!-- online order -->
+<section id="order-online" class="order-section">
+  <div class="container-narrow">
+    <div class="order-wrapper" data-aos="fade-up">
+      <div class="order-content">
+        <span class="section-tag-gold">Instant Delivery</span>
+        <h2 class="section-heading-premium">Taste The Tradition, Delivered</h2>
+        <p class="order-text">
+          Bring the essence of The Lokum to your doorstep. Experience our curated 
+          flavors through our exclusive partnership with Zomato.
+        </p>
+        
+        <a href="https://www.zomato.com/it/bangalore/the-lokum-1-kalyan-nagar-bangalore" class="zomato-btn" target="_blank">
+          <span class="btn-label">Order via Zomato</span>
+          <span class="btn-icon">→</span>
+        </a>
+      </div>
+      
+      <div class="order-visual">
+        <div class="brand-glow"></div>
+        <img src="icons/pngwing.com (1).png" alt="Order via Zomato" class="order-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      <section id="reserve" class="reserve-section">
+        <!-- Ambient Background -->
+        <div class="luxury-bg-elements">
+          <div class="glow-orb orb-1"></div>
+          <div class="glow-orb orb-2"></div>
+        </div>
+
+        <div class="container">
+          <!-- Header -->
+          <div class="header-group">
+            <span class="eyebrow">Exclusivity</span>
+            <h2 class="display-title">Curated Dining <span>Access</span></h2>
+            <div class="title-separator"></div>
+          </div>
+
+          <!-- Cards -->
+          <div class="premium-grid">
+
+            <!-- ZOMATO -->
+            <a href="https://www.zomato.com/bangalore/the-lokum-kalyan-nagar-bangalore" class="glass-card brand-zomato"
+              target="_blank" rel="noopener">
+              <span class="card-spotlight"></span>
+
+              <div class="card-inner">
+                <div class="card-head">
+                  <div class="logo-box">
+                    <img src="icons/pngwing.com (1).png" alt="Zomato">
+                  </div>
+                  <span class="badge">Prime</span>
+                </div>
+
+                <div class="card-body">
+                  <h3 class="card-title">Zomato Gold</h3>
+                  <p>Unlock 1+1 on gourmet dining and prioritized table assignments.</p>
+                </div>
+
+                <div class="card-footer">
+                  <span class="cta-text">Explore Benefits</span>
+                  <span class="icon-arrow">→</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- SWIGGY -->
+            <a href="https://www.swiggy.com/restaurants/the-lokum-kalyan-nagar-bangalore-1329547/dineout"
+              class="glass-card brand-swiggy" target="_blank" rel="noopener">
+              <span class="card-spotlight"></span>
+
+              <div class="card-inner">
+                <div class="card-head">
+                  <div class="logo-box">
+                    <img src="icons/pngwing.com.png" alt="Swiggy">
+                  </div>
+                  <span class="badge">Elite</span>
+                </div>
+
+                <div class="card-body">
+                  <h3 class="card-title">Dineout</h3>
+                  <p>Seamless reservations with exclusive dining discounts.</p>
+                </div>
+
+                <div class="card-footer">
+                  <span class="cta-text">Reserve Now</span>
+                  <span class="icon-arrow">→</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- EAZYDINER -->
+            <a href="https://www.eazydiner.com/bengaluru/the-lokum-kalyan-nagar-north-bengaluru-710894"
+              class="glass-card brand-eazy" target="_blank" rel="noopener">
+              <span class="card-spotlight"></span>
+
+              <div class="card-inner">
+                <div class="card-head">
+                  <div class="logo-box">
+                    <img src="icons/EazyDiner_idll3m2RgX_0.png" alt="EazyDiner">
+                  </div>
+                  <span class="badge">VIP</span>
+                </div>
+
+                <div class="card-body">
+                  <h3 class="card-title">EazyDiner</h3>
+                  <p>Guaranteed reservations at premium culinary destinations.</p>
+                </div>
+
+                <div class="card-footer">
+                  <span class="cta-text">View VIP</span>
+                  <span class="icon-arrow">→</span>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+    </div>
+    
+    </section>
+    <section id="contact-info" class="modern-contact-suite">
+      <div class="container">
+        <div class="suite-header">
+          <span class="status-indicator">● Online Now</span>
+          <h2 class="suite-title">Get in <span>Touch</span></h2>
+        </div>
+
+        <div class="contact-links">
+          <a href="tel:+91720461662" class="suite-row" data-color="#c2a35d">
+            <div class="row-main">
+              <div class="icon-sphere">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </div>
+              <div class="label-group">
+                <span class="category">Direct Line</span>
+                <span class="value">+91 720 461 6662</span>
+              </div>
+            </div>
+            <div class="row-action">
+              <span class="action-text">Call Now</span>
+              <div class="arrow-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></div>
+            </div>
+          </a>
+
+          <a href="https://wa.me/917204616662" class="suite-row" data-color="#25D366">
+            <div class="row-main">
+              <div class="icon-sphere">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                </svg>
+              </div>
+              <div class="label-group">
+                <span class="category">WhatsApp</span>
+                <span class="value">Instant Chat</span>
+              </div>
+            </div>
+            <div class="row-action">
+              <span class="action-text">Message</span>
+              <div class="arrow-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></div>
+            </div>
+          </a>
+
+          <a href="https://www.google.com/maps/place/The+Lokum/@13.022355,77.640031,15z/data=!4m6!3m5!1s0x3bae170513bf8c23:0xb56ac2a84118ed98!8m2!3d13.022355!4d77.6400313!16s%2Fg%2F11yrlt0w5z?hl=en-GB&entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
+            class="suite-row" data-color="#4285F4">
+            <div class="row-main">
+              <div class="icon-sphere">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div class="label-group">
+                <span class="category">Visit Us</span>
+                <span class="value">Bengaluru, HRBR</span>
+              </div>
+            </div>
+            <div class="row-action">
+              <span class="action-text">Maps</span>
+              <div class="arrow-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+
+        <!-- Brand Info -->
+        <div class="footer-brand">
+          <h2>THE LOKUM</h2>
+          <p>Elevated Turkish dining in the heart of Kalyan Nagar. Experience the art of the feast.</p>
+
+          <div class="trust-badges">
+            <div class="google-trust">
+              <span class="rating-number">4.8</span>
+              <span class="rating-stars">★★★★★</span>
+            </div>
+            <div class="social-links">
+              <a href="https://www.instagram.com/the_lokum_restaurant/" target="_blank" rel="noopener"
+                class="social-circle">
+                <img src="icons/instagram.png" alt="Instagram" width="24">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="menu.html">The Menu</a></li>
+            <li><a href="#reserve">Book a Table</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#contact-info">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Find Us / Map -->
+        <div class="footer-col">
+          <h4>Find Us</h4>
+          <div class="map-card">
+            <div class="map-wrapper">
+              <iframe src="https://www.google.com/maps?q=The+Lokum+Kalyan+Nagar+Bengaluru&output=embed" width="100%"
+                height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <p style="font-size: 0.8rem; margin: 15px 10px 5px; color: #fff;">
+              5th A Main Rd, HRBR Layout, Bengaluru
+            </p>
+          </div>
+        </div>
+
+        <div class="iftar-timer">
+          <span class="iftar-label">Ramzan Iftar</span>
+          <h5 id="iftarCountdown">Calculating Iftar time…</h5>
+          <p class="iftar-note">
+            As the sun sets, we are ready to welcome you to break your fast with warmth,
+            tradition, and our special Ramzan platter.
+          </p>
+        </div>
+        <!-- Opening Hours -->
+        <div class="footer-col">
+          <h4>Opening Hours</h4>
+          <ul class="footer-hours">
+            <li>Mon - Fri: 12:30 PM – 12:00 AM</li>
+            <li>Sat - Sun: 12:30 PM – 12:30 AM</li>
+          </ul>
+          <!-- Iftar Timer -->
+
+
+
+          <!-- Theme Toggle -->
+          <div class="theme-switch">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+              <span class="sun">☀</span>
+              <span class="moon">☾</span>
+              <span class="toggle-thumb"></span>
+            </button>
+            <span class="theme-label" id="themeLabel">Dark Mode</span>
+          </div>
+
+        </div>
+        <a href="https://search.google.com/local/writereview?placeid=ChIJI4y_EwUXrjsRmO0YQajCarU" 
+   class="suite-row review-row" 
+   target="_blank">
+  
+  <div class="row-main">
+    <div class="icon-sphere">
+      <!-- Star Icon -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24
+                 l-7.19-.61L12 2 9.19 8.63
+                 2 9.24l5.46 4.73L5.82 21z"/>
+      </svg>
+    </div>
+
+    <div class="label-group">
+      <span class="category">Google Reviews</span>
+      <span class="value">Rate & Share Your Experience</span>
+    </div>
+  </div>
+
+  <div class="row-action">
+    <span class="action-text">Leave Review</span>
+    <div class="arrow-svg">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </div>
+  </div>
+</a>
+
+        <div class="footer-bottom"
+          style="text-align: center; margin-top: 80px; opacity: 0.4; font-size: 0.7rem; letter-spacing: 2px;">
+          <p>© 2026 THE LOKUM — DESIGNED BY MEHDI</p>
+          <p><a href="privacy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> | <a
+              href="terms.html" style="color: inherit; text-decoration: underline;">Terms & Conditions</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  </div>
+
+
+
+
+  </div>
+  <script async src="https://www.instagram.com/embed.js"></script>
+  <!-- Ramzan Offer Popup -->
+  <div class="ramzan-popup-left" id="RamzanOfferPopup">
+    <div class="ramzan-popup-content">
+      <button class="ramzan-close" aria-label="Close">&times;</button>
+      <span class="ramzan-badge">Ramzan Mubarak</span>
+      <h4>Ramzan Platter</h4>
+      <p>
+        Break your fast with our specially curated <strong>Ramzan Platter</strong>, crafted with tradition & warmth.
+      </p>
+      <a href="#ramzan-specials" class="ramzan-popup-btn">View Special Menu</a>
+    </div>
+  </div>
+</body>
+
+</html>
