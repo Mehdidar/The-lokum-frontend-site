@@ -1,837 +1,1993 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Lokum – Anatolia & Beyond</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
-    rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@400;500&display=swap"
-    rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500&family=Great+Vibes&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- GSAP CORE -->
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
   <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
   <style>
     /* Enables smooth scrolling when clicking links */
     html {
       scroll-behavior: smooth;
     }
+
+    /* --- ADVANCED GLOBAL THEME OVERRIDE --- */
+    /* Proper Light Mode Overrides that do not break position: fixed (Navbar) */
+    body.light-mode {
+      background-color: #fcfbf9 !important;
+      color: #1a1a1a !important;
+    }
+
+    /* Force all major sections to light backgrounds */
+    body.light-mode section,
+    body.light-mode header,
+    body.light-mode footer,
+    body.light-mode .hero,
+    body.light-mode #videos,
+    body.light-mode #continental-specials,
+    body.light-mode #reserve,
+    body.light-mode #ultra-footer,
+    body.light-mode .story-section {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      color: #111 !important;
+    }
+
+    /* Ensure text inside elements becomes readable */
+    body.light-mode h1,
+    body.light-mode h2,
+    body.light-mode h3,
+    body.light-mode h4,
+    body.light-mode p,
+    body.light-mode a,
+    body.light-mode span:not([style*="color: #c3a343"]):not([class*="gold"]) {
+      color: #1a1a1a !important;
+      text-shadow: none !important;
+    }
+
+    /* Keep Gold acccents readable on white */
+    body.light-mode [style*="color: #c3a343"] {
+      color: #a38222 !important;
+    }
+
+    /* Soften dark panels in the footer / specials */
+    body.light-mode .super-left-panel,
+    body.light-mode .super-right-panel>div>div,
+    body.light-mode .special-card,
+    body.light-mode .video-card {
+      background: #f7f6f3 !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* Invert specific white logos */
+    body.light-mode .footer-giant-logo {
+      filter: invert(1) contrast(1.5) brightness(0.2) !important;
+    }
   </style>
-  <!-- ScrollSmoother -->
-  <script src="https://unpkg.com/gsap@3/dist/ScrollSmoother.min.js"></script>
+  <!-- ScrollSmoother removed: not available on unpkg (Club plugin), was silently breaking scroll offsets -->
 </head>
 
 <body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="images/logo-web.png" alt="The Lokum" />
+      </a>
 
+      <ul class="nav-links-desktop">
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="#gallery">Space</a></li>
+        <li><a href="#instagram-highlights">Instagram</a></li>
+        <li><a href="#majlis">Gatherings</a></li>
+        <li><a href="#contact-info">Contact</a></li>
+      </ul>
 
+      <div class="nav-actions">
+        <a href="#reserve" class="nav-reserve">Book Table</a>
 
-  <div id="smooth-wrapper">
-    <div id="smooth-content">
-      <nav class="navbar">
-        <div class="nav-inner">
-
-          <a href="#hero" class="nav-logo">
-            <img src="images/logo-web.png" alt="The Lokum">
-          </a>
-
-          <ul class="nav-links-desktop">
-            <li><a href="#about">Our Story</a></li>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="#gallery">Space</a></li>
-            <li><a href="#ramzan-specials">Ramzan Specials</a></li>
-
-            <li><a href="#contact-info">Contact</a></li>
-          </ul>
-
-          <div class="nav-actions">
-            <a href="#reserve" class="nav-reserve">Book Table</a>
-
-            <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
-              <span class="menu-label">Menu</span>
-              <div class="ham-box">
-                <span class="ham-line line-top"></span>
-                <span class="ham-line line-bottom"></span>
-              </div>
-            </button>
+        <button class="nav-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <div class="nav-toggle-inner">
+            <span class="menu-label">Menu</span>
+            <div class="ham-box">
+              <span class="ham-line line-top"></span>
+              <span class="ham-line line-bottom"></span>
+            </div>
           </div>
-        </div>
-      </nav>
-
-      <!-- ✅ Mobile Overlay (ONLY ONE) -->
-      <div class="mobile-menu-overlay" id="mobileMenu">
-        <div class="mobile-links">
-          <a href="#hero" class="mobile-link">Home</a>
-          <a href="#about" class="mobile-link">Our Story</a>
-          <a href="#ramzan-specials" class="mobile-link">Ramzan Specials</a>
-          <a href="menu.html" class="mobile-link">The Menu</a>
-          <a href="#gallery" class="mobile-link">Gallery</a>
-          <a href="#reserve" class="mobile-link highlight">Reservations</a>
-
-        </div>
-
-        <div class="mobile-footer">
-          <div class="footer-logo">
-            <img src="images/logo final white.png" alt="Brand Logo" href="#hero">
-          </div>
-          <div class="footer-divider"></div>
-          <span class="location-text">Bengaluru, India</span>
-        </div>
+        </button>
       </div>
-      <header class="hero" id="hero">
-        <div class="video-container">
-          <video class="hero-video" autoplay muted loop playsinline poster="images/fallback-bg.jpg">
-            <source
-              src="videos/Come on innnn ✨We’ve just opened, and you’re early enough to be part of the beginning — the firs.mp4"
-              type="video/mp4">
-          </video>
-        </div>
-
-        <div class="hero-overlay"></div>
-
-        <div class="hero-content">
-          <div class="hero-logo-wrapper">
-            <img src="images/logo final white.png" alt="Lokum Logo" class="hero-logo">
-          </div>
-
-          <div class="hero-text-box">
-            <span class="hero-subtitle">Welcome to</span>
-            <h1 class="hero-title">The Lokum</h1>
-            <div class="hero-divider"></div>
-            <p class="hero-desc">Anatolia & Beyond</p>
-          </div>
-        </div>
-
-        <a href="#about" class="scroll-indicator">
-          <span class="scroll-text">Explore</span>
-          <div class="scroll-line-container">
-            <div class="scroll-line"></div>
-          </div>
-        </a>
-      </header>
-
-      <section id="about" class="section-padding">
-        <div class="container-narrow">
-          <span class="section-tag">Philosophy</span>
-          <h2 class="section-heading">Fire & Tradition</h2>
-          <p class="section-text">
-            'The Lokum' didn’t start as a restaurant idea. It started as a feeling; one of those things you taste once
-            on a
-            trip and then spend years wishing you could have again.
-
-            For us, that feeling was Turkey. Real Turkey. Not the postcard version.
-
-            We wanted the food that comes out of family kitchens… passed down quietly, guarded almost, because the
-            recipe
-            means something to the people who hold it.
-
-            When our chef arrived from Turkey, he brought with him the traditions he was raised on, the rituals,
-            inherited
-            techniques, and the flavours shaped across generations. That heritage forms the foundation of our Anatolian
-            cuisine.
-
-            Every dish at 'The Lokum' starts with a moment of quiet intention. Ingredients chosen by touch, by instinct,
-            by
-            that small jolt you feel when something is just right. Spices crushed low and slow, releasing a warmth that
-            rises softly. Meats left to rest until they yield, just enough, under the slightest pressure. We cook close
-            to
-            the flame, and we let the fire leave its mark. A hint of smoke, a whisper of char, flavours that don’t rush
-            forward… they unfold. They wait for you to notice.
-
-            Our space reflects the same intention. The lighting, the textures, the small details we obsessed over. It’s
-            a
-            space designed so you can slow down, breathe, and experience Turkish hospitality in its truest form.
-
-            'The Lokum' is our way of bringing a little Turkish magic to Bangalore. It's food that carries a whole
-            country
-            in its heart.
-
-            Welcome. We’re really glad you’re here
-          </p>
-
-        </div>
-
-
-      </section>
-
-      <section id="ramzan-specials" class="section-padding ramzan-section">
-
-        <div class="background-photo"></div>
-
-        <div class="container-narrow">
-          <span class="section-tag">Seasonal Delight</span>
-          <h2 class="section-heading-light">Ramzan Specials</h2>
-
-          <!-- Poetic Intro -->
-          <p class="ramzan-poetic">
-            “At The Lokum, Ramzan is a celebration of flavors and tradition. Each dish tells a story — of family
-            kitchens,
-            timeless recipes, and the warmth of shared moments. As the sun sets, we invite you to gather and break your
-            fast
-            with a menu inspired by Turkish tradition and hospitality.”
-          </p>
-
-          <!-- Ramzan Platter Description -->
-          <div class="ramzan-platter">
-            <h3>Ramzan Platter – Curated for Two</h3>
-
-            <p>
-              Thoughtfully crafted for sharing, our Ramzan Platter brings together the richness of Anatolian cuisine.
-              Designed for two guests, it offers a harmonious balance of grilled specialties, comforting soups,
-              refreshing salads, and sweet endings.
-            </p>
-
-            <ul class="platter-list">
-              <li><strong>Grills:</strong> Adana Kebab, Urfa Kebab, Shish Tawook, Lamb & Mandi</li>
-              <li><strong>Soup:</strong> Traditional Mutton Soup</li>
-              <li><strong>Mezes:</strong> Hummus served with warm Pita Bread</li>
-              <li><strong>Starters:</strong> Sigara Börek, Chicken Fingers & Fries</li>
-              <li><strong>Salad:</strong> Fattoush with Dates & Fresh Cut Fruits</li>
-              <li><strong>Dessert:</strong> Sutlaç (Turkish Rice Pudding)</li>
-              <li><strong>Drinks:</strong> Osmanlı Sherbet & Turkish Kahwa</li>
-            </ul>
-
-            <p class="platter-closing">
-              A feast that nourishes both body and soul — bringing families together in the true spirit of Ramzan.
-            </p>
-          </div>
-
-          <!-- Instagram Reel -->
-          <div class="ramzan-reel">
-            <iframe src="https://www.instagram.com/reel/DU5aFwdEq_x/embed" frameborder="0" scrolling="no"
-              allowfullscreen
-              allow="autoplay; clipboard-write; encrypted-media; encrypted-media; picture-in-picture; web-share">
-            </iframe>
-          </div>
-
-        </div>
-      </section>
-      <section id="menu" class="section-dark culinary-section">
-        <div class="container-narrow">
-
-          <h2 class="section-heading-light">Culinary Journey</h2>
-          <p class="section-text-light">
-            From the bustling streets of Istanbul to the quiet coasts of the Aegean.
-          </p>
-
-          <div class="culinary-grid">
-
-            <!-- 1 -->
-            <div class="culinary-card">
-              <img src="food/tepsi-2.webp" loading="lazy" decoding="async" alt="Anatolian Tepsi Kebab">
-              <div class="culinary-overlay">
-                <h3>Anatolian Tepsi Kebab</h3>
-                <span>Slow-baked minced lamb, peppers, tomato & aromatic spices</span>
-              </div>
-            </div>
-
-            <!-- 2 -->
-            <div class="culinary-card">
-              <img src="food/hummus 2.58.43 PM.webp" alt="Traditional Hummus" loading="lazy" decoding="async">
-              <div class="culinary-overlay">
-                <h3>Traditional Hummus</h3>
-                <span>Stone-ground chickpeas, tahini, lemon & extra virgin olive oil</span>
-              </div>
-            </div>
-
-            <!-- 3 -->
-            <div class="culinary-card">
-              <img src="food/sis tavuk 2.58.44 PM.webp" alt="Şiş Tavuk" loading="lazy" decoding="async">
-              <div class="culinary-overlay">
-                <h3>Şiş Tavuk</h3>
-                <span>Charcoal-grilled marinated chicken skewers & smoked yogurt</span>
-              </div>
-            </div>
-
-            <!-- 4 (NEW) -->
-            <div class="culinary-card">
-              <img src="food/mutton hummus 2.56.28 PM.webp" alt="Mutton Hummus" loading="lazy" decoding="async">
-              <div class="culinary-overlay">
-                <h3>Mutton Hummus</h3>
-                <span>Tender slow-cooked lamb over warm hummus & spiced butter</span>
-              </div>
-            </div>
-
-            <!-- 5 (NEW) -->
-            <div class="culinary-card">
-              <img src="food/kymlie pide 2.58.44 PM.webp" alt="Kıymalı Pide" loading="lazy" decoding="async">
-              <div class="culinary-overlay">
-                <h3>Kıymalı Pide</h3>
-                <span>Wood-fired flatbread topped with seasoned minced beef & herbs</span>
-              </div>
-            </div>
-
-            <!-- 6 (NEW) -->
-            <div class="culinary-card">
-              <img src="food/chicken alferdo.webp" alt="Crumb Fried Special" loading="lazy" decoding="async">
-              <div class="culinary-overlay">
-                <h3>Crumb Fried Special</h3>
-                <span>Golden fried bites served with house-made garlic yogurt</span>
-              </div>
-            </div>
-
-            <!-- 7 (NEW DESSERT) -->
-            <div class="culinary-card">
-              <img src="food/sutlac-2.webp" alt="Sütlaç" loading="lazy">
-              <div class="culinary-overlay">
-                <h3>Sütlaç</h3>
-                <span>Traditional baked rice pudding with caramelized top & cinnamon</span>
-              </div>
-            </div>
-
-            <!-- adnana -->
-            <div class="culinary-card">
-              <img src="food/adanan.webp" loading="lazy" decoding="async" alt="Sütlaç">
-              <div class="culinary-overlay">
-                <h3>Adana Kebab</h3>
-                <span>Spicy minced lamb skewers with traditional Turkish spices</span>
-              </div>
-            </div>
-
-            <div class="culinary-card">
-              <img src="food/testi kebabab 2.58.45 PM.webp" alt="Sütlaç" loading="lazy" decoding="async">
-              <div class="culinary-overlay">
-                <h3>Testi Kebab</h3>
-                <span>Slow-cooked lamb in a clay pot with aromatic spices</span>
-              </div>
-            </div>
-          </div>
-
-          <br>
-          <br>
-
-
-          <div class="menu-actions">
-            <a href="menu.html" target="_blank" rel="noopener" class="btn-outline">View Full Menu</a>
-            <br>
-            <a href="https://drive.google.com/drive/folders/14kx1fKw83hNUSuvEbh6V617DU1KVlGL0?usp=sharing"
-              target="_blank" rel="noopener" class="btn-image">
-              <span>View More Food Images</span>
-            </a>
-          </div>
-        </div>
-      </section>
-      <section id="gallery" class="section-padding">
-        <h1 class="space">SPACES</h1>
-        <div class="gallery-wrapper">
-          <div class="gallery-track">
-            <div class="gallery-item">
-              <img src="images/outside.jpg" alt="Space 1" data-speed="1.2">
-            </div>
-
-            <div class="gallery-item">
-              <img src="images/Pic 13 V1.webp" alt="Space 1" data-speed="1.2">
-            </div>
-
-            <div class="gallery-item">
-              <img src="images/Pic 18 V1.jpg" alt="Space 1" data-speed="1.2">
-            </div>
-
-            <div class="gallery-item">
-              <img src="images/DSC03031.00000000.jpg" alt="Space 2" data-speed="1.2">
-            </div>
-
-            <div class="gallery-item">
-              <img src="images/Pic 2 V1.jpg" alt="Space 3" data-speed="1.2">
-            </div>
-
-            <div class="gallery-item">
-              <img src="images/Pic 12 V1.jpg" alt="Space 4" data-speed="1.2">
-            </div>
-
-            <div class="gallery-item">
-              <img src="images/Pic 3 V2.jpg" alt="Space 5" data-speed="1.2">
-            </div>
-
-            <div class="gallery-item">
-              <img src="images/Pic 9 V1.jpg" alt="Space 7" data-speed="1.2">
-            </div>
-
-            <div class="gallery-item">
-              <img src="images/outside2.jpg" alt="Space 8" data-speed="1.2">
-            </div>
-
-
-            <div class="gallery-item">
-              <img src="images/shakir.jpg" alt="Space 8" data-speed="1.2">
-            </div>
-            <div class="gallery-item">
-              <img src="images/ground 1.jpg" alt="Space 8" data-speed="1.2">
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-
-
-      <section id="majlis" class="section-padding majlis-section">
-        <div class="luxury-glow"></div>
-
-        <div class="container-narrow">
-          <div class="majlis-header-wrap">
-            <span class="section-tag-gold" data-aos="fade-up">A Heritage Gathering</span>
-            <h2 class="section-heading-premium" data-aos="fade-up" data-aos-delay="100">The Majlis</h2>
-
-            <div class="premium-divider"></div>
-
-            <p class="majlis-text-refined" data-aos="fade-up" data-aos-delay="200">
-              The Majlis at The Lokum is a sanctuary of togetherness — where conversations flow,
-              time slows, and tradition comes alive. Inspired by the age-old Middle Eastern
-              gathering, it is a curated space for shared meals, quiet reflections, and
-              unforgettable evenings under a canopy of warm, amber light.
-            </p>
-          </div>
-
-          <div class="majlis-grid">
-            <div class="majlis-card-wrapper" data-aos="fade-up" data-aos-delay="300">
-              <div class="majlis-card">
-                <div class="card-inner-border"></div>
-                <img src="images/Pic 9 V1.webp" alt="Majlis seating at The Lokum" loading="lazy">
-                <div class="card-caption">Private Intimacy</div>
-              </div>
-            </div>
-
-            <div class="majlis-card-wrapper" data-aos="fade-up" data-aos-delay="450">
-              <div class="majlis-card">
-                <div class="card-inner-border"></div>
-                <img src="images/majlis.webp" alt="Traditional Majlis ambience" loading="lazy">
-                <div class="card-caption">Shared Heritage</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="continental-specials" class="chef-section">
-        <div class="container-narrow">
-          <span class="section-tag">Exclusives</span>
-          <h2 class="section-heading-light">Continental Specials</h2>
-          <p class="section-text-light">Handpicked signature dishes from around the world, curated by our chefs.</p>
-
-          <div class="chef-grid">
-            <div class="chef-card" data-tilt>
-              <div class="card-spotlight"></div>
-              <img src="food/chicken cesar salad.webp" alt="Chicken Caesar Salad">
-              <div class="card-overlay">
-                <h3>Chicken Caesar Salad</h3>
-                <p>Crisp romaine lettuce tossed with grilled chicken, Parmesan cheese, croutons, and classic Caesar
-                  dressing.</p>
-              </div>
-            </div>
-
-            <div class="chef-card" data-tilt>
-              <div class="card-spotlight"></div>
-              <img src="food/crum fried .webp" alt="Crumb Fried Chicken">
-              <div class="card-overlay">
-                <h3>Crumb Fried Chicken</h3>
-                <p>Golden, crispy fried chicken with a perfect blend of spices and herbs.</p>
-              </div>
-            </div>
-
-            <div class="chef-card" data-tilt>
-              <div class="card-spotlight"></div>
-              <img src="food/chicken alferdo.webp" alt="Chicken Alfredo">
-              <div class="card-overlay">
-                <h3>Chicken Alfredo</h3>
-                <p>Succulent chicken strips served over fettuccine pasta with a creamy Parmesan Alfredo sauce and fresh
-                  herbs.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="videos" class="section-padding video-section">
-        <div class="container-narrow">
-
-          <span class="section-tag">Visuals</span>
-          <h2 class="section-heading-light">Some of Our Videos & Reels</h2>
-          <p class="section-text-light">
-            Experience our dishes and ambience in motion.
-          </p>
-
-          <div class="video-grid">
-
-            <!-- VIDEO 1 -->
-            <div class="video-card">
-              <video autoplay muted loop playsinline>
-                <source src="videos/8ff15819-de09-4abe-b30d-b04510e35471 2.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-
-              <div class="video-overlay">
-                <div class="overlay-content">
-                  <h3>Lokum Ambience</h3>
-                  <span>“Taste Tradition. Savor Lokum.”</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- VIDEO 2 -->
-            <div class="video-card">
-              <video autoplay muted loop playsinline>
-                <source src="videos/lokum.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-
-              <div class="video-overlay">
-                <div class="overlay-content">
-                  <h3>Culinary Craft</h3>
-                  <span>Lokum — Where Every Bite Tells a Story</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-        <!-- online order -->
-<section id="order-online" class="order-section">
-  <div class="container-narrow">
-    <div class="order-wrapper" data-aos="fade-up">
-      <div class="order-content">
-        <span class="section-tag-gold">Instant Delivery</span>
-        <h2 class="section-heading-premium">Taste The Tradition, Delivered</h2>
-        <p class="order-text">
-          Bring the essence of The Lokum to your doorstep. Experience our curated 
-          flavors through our exclusive partnership with Zomato.
-        </p>
-        
-        <a href="https://www.zomato.com/it/bangalore/the-lokum-1-kalyan-nagar-bangalore" class="zomato-btn" target="_blank">
-          <span class="btn-label">Order via Zomato</span>
-          <span class="btn-icon">→</span>
+    </div>
+  </nav>
+
+  <!-- Mobile Overlay  -->
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <div class="mobile-links">
+      <a href="#hero" class="mobile-link">Home</a>
+      <a href="menu.html" class="mobile-link">The Menu</a>
+      <a href="#about" class="mobile-link">Our Story</a>
+      <a href="#gallery" class="mobile-link">Spaces</a>
+      <a href="#majlis" class="mobile-link">Gatherings</a>
+      <a href="#instagram-highlights" class="mobile-link">Instagram</a>
+      <a href="#contact-info" class="mobile-link">Contact</a>
+      <a href="#reserve" class="mobile-link highlight">Reservations</a>
+    </div>
+
+    <div class="mobile-footer">
+      <div class="footer-logo">
+        <a href="#hero" class="mobile-logo-link">
+          <img src="images/logo-footer.png" alt="Brand Logo" />
         </a>
       </div>
-      
-      <div class="order-visual">
-        <div class="brand-glow"></div>
-        <img src="icons/pngwing.com (1).png" alt="Order via Zomato" class="order-img">
+      <div class="footer-divider"></div>
+      <span class="location-text">Bengaluru, India</span>
+      <div class="mobile-socials">
+        <a href="https://www.instagram.com/the_lokum_restaurant/" class="social-lite">Instagram</a>
+        <a href="https://wa.me/917204616662" class="social-lite">WhatsApp</a>
       </div>
     </div>
   </div>
-</section>
-
-
-      <section id="reserve" class="reserve-section">
-        <!-- Ambient Background -->
-        <div class="luxury-bg-elements">
-          <div class="glow-orb orb-1"></div>
-          <div class="glow-orb orb-2"></div>
-        </div>
-
-        <div class="container">
-          <!-- Header -->
-          <div class="header-group">
-            <span class="eyebrow">Exclusivity</span>
-            <h2 class="display-title">Curated Dining <span>Access</span></h2>
-            <div class="title-separator"></div>
-          </div>
-
-          <!-- Cards -->
-          <div class="premium-grid">
-
-            <!-- ZOMATO -->
-            <a href="https://www.zomato.com/bangalore/the-lokum-kalyan-nagar-bangalore" class="glass-card brand-zomato"
-              target="_blank" rel="noopener">
-              <span class="card-spotlight"></span>
-
-              <div class="card-inner">
-                <div class="card-head">
-                  <div class="logo-box">
-                    <img src="icons/pngwing.com (1).png" alt="Zomato">
-                  </div>
-                  <span class="badge">Prime</span>
-                </div>
-
-                <div class="card-body">
-                  <h3 class="card-title">Zomato Gold</h3>
-                  <p>Unlock 1+1 on gourmet dining and prioritized table assignments.</p>
-                </div>
-
-                <div class="card-footer">
-                  <span class="cta-text">Explore Benefits</span>
-                  <span class="icon-arrow">→</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- SWIGGY -->
-            <a href="https://www.swiggy.com/restaurants/the-lokum-kalyan-nagar-bangalore-1329547/dineout"
-              class="glass-card brand-swiggy" target="_blank" rel="noopener">
-              <span class="card-spotlight"></span>
-
-              <div class="card-inner">
-                <div class="card-head">
-                  <div class="logo-box">
-                    <img src="icons/pngwing.com.png" alt="Swiggy">
-                  </div>
-                  <span class="badge">Elite</span>
-                </div>
-
-                <div class="card-body">
-                  <h3 class="card-title">Dineout</h3>
-                  <p>Seamless reservations with exclusive dining discounts.</p>
-                </div>
-
-                <div class="card-footer">
-                  <span class="cta-text">Reserve Now</span>
-                  <span class="icon-arrow">→</span>
-                </div>
-              </div>
-            </a>
-
-            <!-- EAZYDINER -->
-            <a href="https://www.eazydiner.com/bengaluru/the-lokum-kalyan-nagar-north-bengaluru-710894"
-              class="glass-card brand-eazy" target="_blank" rel="noopener">
-              <span class="card-spotlight"></span>
-
-              <div class="card-inner">
-                <div class="card-head">
-                  <div class="logo-box">
-                    <img src="icons/EazyDiner_idll3m2RgX_0.png" alt="EazyDiner">
-                  </div>
-                  <span class="badge">VIP</span>
-                </div>
-
-                <div class="card-body">
-                  <h3 class="card-title">EazyDiner</h3>
-                  <p>Guaranteed reservations at premium culinary destinations.</p>
-                </div>
-
-                <div class="card-footer">
-                  <span class="cta-text">View VIP</span>
-                  <span class="icon-arrow">→</span>
-                </div>
-              </div>
-            </a>
-
-          </div>
-        </div>
+  <header class="hero" id="hero">
+    <div class="video-container">
+      <video class="hero-video" autoplay muted loop playsinline poster="images/outside.jpg">
+        <source src="videos/hero-video.mp4" type="video/mp4" />
+      </video>
     </div>
-    
-    </section>
-    <section id="contact-info" class="modern-contact-suite">
-      <div class="container">
-        <div class="suite-header">
-          <span class="status-indicator">● Online Now</span>
-          <h2 class="suite-title">Get in <span>Touch</span></h2>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-logo-wrapper">
+        <img src="images/logo-footer.png" alt="Lokum Logo" class="hero-logo" />
+      </div>
+
+      <div class="hero-text-box">
+        <span class="hero-subtitle">Welcome to</span>
+        <h1 class="hero-title">The Lokum</h1>
+        <div class="hero-divider"></div>
+        <p class="hero-desc">Anatolia & Beyond</p>
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-indicator">
+      <span class="scroll-text">Explore</span>
+      <div class="scroll-line-container">
+        <div class="scroll-line"></div>
+      </div>
+    </a>
+  </header>
+
+  <section id="about" class="story-section parallax-scene">
+    <div class="container luxe-grid">
+      <!-- Story Content -->
+      <div class="story-content" data-aos="fade-right">
+        <span class="luxe-eyebrow">Our Philosophy</span>
+        <h2 class="luxe-title">Fire, Tradition & <span>Anatolia</span></h2>
+        <div class="story-divider"></div>
+
+        <p class="story-lead">
+          'The Lokum' didn’t start as a restaurant idea. It started as a
+          feeling; a taste captured in a distant memory and sought after for
+          years.
+        </p>
+
+        <p class="story-body">
+          We wanted the food that comes out of true Anatolian kitchens… passed
+          down quietly through generations, guarded because the recipe means
+          something deeply personal to the family. When our chef arrived from
+          Turkey, he brought with him the rituals, the wood-fire techniques,
+          and the very soul of Anatolia to Bengaluru.
+        </p>
+
+        <p class="story-body">
+          Every dish starts with a moment of quiet intention. We cook close to
+          the flame, letting the fire leave its mark. It's food that carries a
+          whole country in its heart—designed so you can slow down, breathe,
+          and experience Turkish hospitality in its truest form.
+        </p>
+
+        <div class="story-cta">
+          <a href="menu.html" class="btn-minimal">Discover Menu</a>
+        </div>
+      </div>
+
+      <!-- Story Visuals -->
+      <div class="story-visuals" data-aos="fade-left">
+        <div class="img-stack">
+          <div class="img-main-wrap" data-tilt data-tilt-max="5" data-tilt-speed="1000">
+            <img src="images/outside2.jpg" alt="The Lokum Exterior" class="img-main" />
+          </div>
+          <div class="img-offset-wrap" data-aos="fade-up" data-aos-delay="300">
+            <img src="images/pic 2 v1.jpg" alt="Interior Details" class="img-offset" />
+          </div>
+          <div class="decorative-blob"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+           INSTAGRAM HIGHLIGHTS 
+      ════════════════════════════════════════ -->
+  <section id="instagram-highlights" class="insta-section" style="
+        position: relative;
+        overflow: hidden;
+        padding: 120px 0;
+        background: #0b0b0b;
+      ">
+    <!-- Ambient Background Effects -->
+    <div class="luxury-bg-elements" style="
+          pointer-events: none;
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          z-index: 0;
+        ">
+      <div class="glow-orb orb-1" style="
+            opacity: 0.15;
+            top: 10%;
+            right: 10%;
+            background: #c3a343;
+            width: 400px;
+            height: 400px;
+            filter: blur(100px);
+          "></div>
+      <div class="glow-orb orb-2" style="
+            opacity: 0.1;
+            bottom: 10%;
+            left: 0%;
+            background: #e2c073;
+            width: 500px;
+            height: 500px;
+            filter: blur(120px);
+          "></div>
+      <div class="majlis-pattern-overlay" style="
+            opacity: 0.1;
+            background-image: url(&quot;images/pattern-bg.png&quot;);
+            background-size: cover;
+            mix-blend-mode: overlay;
+          "></div>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2">
+      <!-- Header -->
+      <div class="insta-header" style="text-align: center; margin-bottom: 60px">
+        <span class="section-tag-gold" data-aos="fade-up" style="
+              display: block;
+              font-size: 0.85rem;
+              letter-spacing: 4px;
+              color: #c3a343;
+              text-transform: uppercase;
+              margin-bottom: 15px;
+            ">✦ Social Spotlight ✦</span>
+        <h2 class="section-heading-premium" data-aos="fade-up" data-aos-delay="100" style="
+              color: #fff;
+              font-size: clamp(2.5rem, 5vw, 4rem);
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-weight: 400;
+              margin-bottom: 20px;
+            ">
+          The Lokum on<br /><em style="font-style: italic; color: #c3a343">Instagram</em>
+        </h2>
+        <div class="premium-divider" data-aos="fade-up" data-aos-delay="200" style="
+              margin: 0 auto 25px;
+              width: 80px;
+              height: 1px;
+              background: linear-gradient(
+                90deg,
+                transparent,
+                #c3a343,
+                transparent
+              );
+            "></div>
+        <p class="insta-intro" data-aos="fade-up" data-aos-delay="300" style="
+              max-width: 600px;
+              margin: 0 auto;
+              color: rgba(255, 255, 255, 0.7);
+              font-size: 1.05rem;
+              line-height: 1.8;
+            ">
+          Immerse yourself in our visual journey. Follow the daily rituals,
+          fiery kitchens, and vibrant stories of Anatolia brought to life in
+          Bengaluru.
+        </p>
+      </div>
+
+      <!-- Reels Grid -->
+      <div class="insta-reels-grid" style="
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+          ">
+        <!-- Reel Card 1 -->
+        <div class="insta-reel-card" data-aos="fade-up" style="
+              flex: 1;
+              max-width: 380px;
+              min-width: 300px;
+              background: rgba(15, 15, 15, 0.6);
+              border: 1px solid rgba(195, 163, 67, 0.15);
+              border-radius: 20px;
+              padding: 20px;
+              backdrop-filter: blur(15px);
+              -webkit-backdrop-filter: blur(15px);
+              box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+              transform: translateY(0);
+              transition: all 0.4s ease;
+            " onmouseover="
+              this.style.transform = 'translateY(-10px)';
+              this.style.borderColor = 'rgba(195,163,67,0.5)';
+              this.style.boxShadow = '0 20px 50px rgba(195,163,67,0.15)';
+            " onmouseout="
+              this.style.transform = 'translateY(0)';
+              this.style.borderColor = 'rgba(195,163,67,0.15)';
+              this.style.boxShadow = '0 15px 40px rgba(0,0,0,0.6)';
+            ">
+          <div class="insta-card-header" style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+              ">
+            <div style="display: flex; align-items: center; gap: 12px">
+              <div style="
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 50%;
+                    padding: 2px;
+                    background: linear-gradient(
+                      45deg,
+                      #f09433 0%,
+                      #e6683c 25%,
+                      #dc2743 50%,
+                      #cc2366 75%,
+                      #bc1888 100%
+                    );
+                  ">
+                <img src="images/logo-footer.png" alt="Lokum" style="
+                      width: 100%;
+                      height: 100%;
+                      border-radius: 50%;
+                      object-fit: contain;
+                      background: #000;
+                      border: 2px solid #000;
+                    " />
+              </div>
+              <div>
+                <h4 style="
+                      font-family: &quot;Inter&quot;, sans-serif;
+                      font-size: 0.95rem;
+                      font-weight: 600;
+                      color: #fff;
+                      margin: 0;
+                    ">
+                  the_lokum_restaurant
+                </h4>
+                <p style="
+                      font-family: &quot;Inter&quot;, sans-serif;
+                      font-size: 0.75rem;
+                      color: rgba(255, 255, 255, 0.5);
+                      margin: 0;
+                    ">
+                  Bengaluru, India
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="instagram-reel-container" style="
+                border-radius: 12px;
+                overflow: hidden;
+                background: #050505;
+                position: relative;
+                min-height: 480px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              ">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DV8smr-kWA3/"
+              data-instgrm-version="14" style="
+                  background: #000;
+                  border: 0;
+                  border-radius: 3px;
+                  margin: 1px;
+                  max-width: 540px;
+                  min-width: 326px;
+                  padding: 0;
+                  width: calc(100% - 2px);
+                "></blockquote>
+          </div>
+
+          <div class="insta-card-footer" style="margin-top: 20px; text-align: center">
+            <a href="https://www.instagram.com/reel/DV8smr-kWA3/" target="_blank" style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  color: #c3a343;
+                  font-size: 0.9rem;
+                  text-decoration: none;
+                  font-weight: 500;
+                  padding: 10px 24px;
+                  border: 1px solid rgba(195, 163, 67, 0.3);
+                  border-radius: 30px;
+                  transition: all 0.3s;
+                " onmouseover="
+                  this.style.background = 'rgba(195,163,67,0.1)';
+                  this.style.borderColor = '#c3a343';
+                " onmouseout="
+                  this.style.background = 'transparent';
+                  this.style.borderColor = 'rgba(195,163,67,0.3)';
+                ">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              View on Instagram
+            </a>
+          </div>
         </div>
 
-        <div class="contact-links">
-          <a href="tel:+91720461662" class="suite-row" data-color="#c2a35d">
-            <div class="row-main">
-              <div class="icon-sphere">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
+        <!-- Reel Card 2 -->
+        <div class="insta-reel-card" data-aos="fade-up" data-aos-delay="200" style="
+              flex: 1;
+              max-width: 380px;
+              min-width: 300px;
+              background: rgba(15, 15, 15, 0.6);
+              border: 1px solid rgba(195, 163, 67, 0.15);
+              border-radius: 20px;
+              padding: 20px;
+              backdrop-filter: blur(15px);
+              -webkit-backdrop-filter: blur(15px);
+              box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+              transform: translateY(0);
+              transition: all 0.4s ease;
+            " onmouseover="
+              this.style.transform = 'translateY(-10px)';
+              this.style.borderColor = 'rgba(195,163,67,0.5)';
+              this.style.boxShadow = '0 20px 50px rgba(195,163,67,0.15)';
+            " onmouseout="
+              this.style.transform = 'translateY(0)';
+              this.style.borderColor = 'rgba(195,163,67,0.15)';
+              this.style.boxShadow = '0 15px 40px rgba(0,0,0,0.6)';
+            ">
+          <div class="insta-card-header" style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+              ">
+            <div style="display: flex; align-items: center; gap: 12px">
+              <div style="
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 50%;
+                    padding: 2px;
+                    background: linear-gradient(
+                      45deg,
+                      #f09433 0%,
+                      #e6683c 25%,
+                      #dc2743 50%,
+                      #cc2366 75%,
+                      #bc1888 100%
+                    );
+                  ">
+                <img src="images/logo-footer.png" alt="Lokum" style="
+                      width: 100%;
+                      height: 100%;
+                      border-radius: 50%;
+                      object-fit: contain;
+                      background: #000;
+                      border: 2px solid #000;
+                    " />
               </div>
-              <div class="label-group">
-                <span class="category">Direct Line</span>
-                <span class="value">+91 720 461 6662</span>
+              <div>
+                <h4 style="
+                      font-family: &quot;Inter&quot;, sans-serif;
+                      font-size: 0.95rem;
+                      font-weight: 600;
+                      color: #fff;
+                      margin: 0;
+                    ">
+                  the_lokum_restaurant
+                </h4>
+                <p style="
+                      font-family: &quot;Inter&quot;, sans-serif;
+                      font-size: 0.75rem;
+                      color: rgba(255, 255, 255, 0.5);
+                      margin: 0;
+                    ">
+                  Bengaluru, India
+                </p>
               </div>
             </div>
-            <div class="row-action">
-              <span class="action-text">Call Now</span>
-              <div class="arrow-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg></div>
-            </div>
-          </a>
+          </div>
 
-          <a href="https://wa.me/917204616662" class="suite-row" data-color="#25D366">
-            <div class="row-main">
-              <div class="icon-sphere">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path
-                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                </svg>
-              </div>
-              <div class="label-group">
-                <span class="category">WhatsApp</span>
-                <span class="value">Instant Chat</span>
-              </div>
-            </div>
-            <div class="row-action">
-              <span class="action-text">Message</span>
-              <div class="arrow-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg></div>
-            </div>
-          </a>
+          <div class="instagram-reel-container" style="
+                border-radius: 12px;
+                overflow: hidden;
+                background: #050505;
+                position: relative;
+                min-height: 480px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              ">
+            <!-- Using another Lokum link or the same reel parameter -->
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DV-KMrLk7sZ/"
+              data-instgrm-version="14" style="
+                  background: #000;
+                  border: 0;
+                  border-radius: 3px;
+                  margin: 1px;
+                  max-width: 540px;
+                  min-width: 326px;
+                  padding: 0;
+                  width: calc(100% - 2px);
+                "></blockquote>
+          </div>
 
-          <a href="https://www.google.com/maps/place/The+Lokum/@13.022355,77.640031,15z/data=!4m6!3m5!1s0x3bae170513bf8c23:0xb56ac2a84118ed98!8m2!3d13.022355!4d77.6400313!16s%2Fg%2F11yrlt0w5z?hl=en-GB&entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
-            class="suite-row" data-color="#4285F4">
-            <div class="row-main">
-              <div class="icon-sphere">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-              </div>
-              <div class="label-group">
-                <span class="category">Visit Us</span>
-                <span class="value">Bengaluru, HRBR</span>
-              </div>
+          <div class="insta-card-footer" style="margin-top: 20px; text-align: center">
+            <a href="https://www.instagram.com/reel/DV-KMrLk7sZ/" target="_blank" style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  color: #c3a343;
+                  font-size: 0.9rem;
+                  text-decoration: none;
+                  font-weight: 500;
+                  padding: 10px 24px;
+                  border: 1px solid rgba(195, 163, 67, 0.3);
+                  border-radius: 30px;
+                  transition: all 0.3s;
+                " onmouseover="
+                  this.style.background = 'rgba(195,163,67,0.1)';
+                  this.style.borderColor = '#c3a343';
+                " onmouseout="
+                  this.style.background = 'transparent';
+                  this.style.borderColor = 'rgba(195,163,67,0.3)';
+                ">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              View on Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="menu" class="section-dark culinary-section" style="position: relative">
+    <!-- Awesome Background Effects -->
+    <div class="luxury-bg-elements" style="
+          pointer-events: none;
+          position: abCulinary Journeysolute;
+          inset: 0;
+          overflow: hidden;
+          z-index: 0;
+        ">
+      <div class="glow-orb orb-1" style="opacity: 0.08; top: 5%; left: -10%"></div>
+      <div class="glow-orb orb-2" style="opacity: 0.08; top: 45%; right: -5%"></div>
+      <div class="glow-orb orb-1" style="opacity: 0.06; bottom: 15%; left: 10%; background: #e2c073"></div>
+    </div>
+    <div class="container-narrow" style="position: relative; z-index: 2">
+      <!-- Premium Main Header -->
+      <div class="menu-header-center" style="text-align: center; margin-bottom: 80px">
+        <span class="section-tag-gold" style="
+              font-size: 0.85rem;
+              letter-spacing: 4px;
+              display: block;
+              margin-bottom: 15px;
+              color: #c3a343;
+              text-transform: uppercase;
+            " data-aos="fade-up">Artisan Offerings</span>
+        <h2 class="section-heading-premium" style="
+              color: #fff;
+              font-size: clamp(3rem, 6vw, 4.5rem);
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-weight: 400;
+              font-style: italic;
+              margin-bottom: 20px;
+            " data-aos="fade-up" data-aos-delay="100">
+          Culinary Journey
+        </h2>
+        <div class="premium-divider" style="
+              margin: 0 auto 25px;
+              width: 80px;
+              height: 1px;
+              background: linear-gradient(
+                90deg,
+                transparent,
+                #c3a343,
+                transparent
+              );
+            " data-aos="fade-up" data-aos-delay="200"></div>
+        <p class="section-text-light" style="
+              max-width: 500px;
+              margin: 0 auto;
+              color: rgba(255, 255, 255, 0.7);
+              font-size: 1rem;
+              line-height: 1.8;
+            " data-aos="fade-up" data-aos-delay="300">
+          From the energetic streets of Istanbul to the serene coasts of the
+          Aegean. Discover our handcrafted tasting journey.
+        </p>
+      </div>
+
+      <!-- Soups & Salads -->
+      <div class="course-header" style="text-align: center; margin: 100px 0 50px">
+        <span style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 0.75rem;
+              font-weight: 500;
+              letter-spacing: 6px;
+              color: rgba(195, 163, 67, 0.8);
+              text-transform: uppercase;
+              display: block;
+              margin-bottom: 12px;
+            " data-aos="fade-up">Course I</span>
+        <h3 style="
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-size: 2.4rem;
+              color: #fff;
+              font-weight: 400;
+              letter-spacing: 1px;
+              margin-bottom: 25px;
+            " data-aos="fade-up" data-aos-delay="100">
+          Soups & Salads
+        </h3>
+        <div style="
+              width: 1px;
+              height: 50px;
+              background: linear-gradient(
+                to bottom,
+                rgba(195, 163, 67, 0.7),
+                transparent
+              );
+              margin: 0 auto;
+            " data-aos="fade-up" data-aos-delay="200"></div>
+      </div>
+      <div class="culinary-grid" style="
+            margin-top: 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 420px));
+            justify-content: center;
+          ">
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="0">
+          <img src="Culinary%20Journey/soups.jpeg" loading="lazy" decoding="async" alt="Soups Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="150">
+          <img src="Culinary%20Journey/salads.jpeg" loading="lazy" decoding="async" alt="Salads Menu" />
+        </div>
+      </div>
+
+      <!-- Starters & Mezze -->
+      <div class="course-header" style="text-align: center; margin: 120px 0 50px">
+        <span style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 0.75rem;
+              font-weight: 500;
+              letter-spacing: 6px;
+              color: rgba(195, 163, 67, 0.8);
+              text-transform: uppercase;
+              display: block;
+              margin-bottom: 12px;
+            " data-aos="fade-up">Course II</span>
+        <h3 style="
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-size: 2.4rem;
+              color: #fff;
+              font-weight: 400;
+              letter-spacing: 1px;
+              margin-bottom: 25px;
+            " data-aos="fade-up" data-aos-delay="100">
+          Starters & Mezze
+        </h3>
+        <div style="
+              width: 1px;
+              height: 50px;
+              background: linear-gradient(
+                to bottom,
+                rgba(195, 163, 67, 0.7),
+                transparent
+              );
+              margin: 0 auto;
+            " data-aos="fade-up" data-aos-delay="200"></div>
+      </div>
+      <div class="culinary-grid" style="
+            margin-top: 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 420px));
+            justify-content: center;
+          ">
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="0">
+          <img src="Culinary%20Journey/starter1.jpeg" loading="lazy" decoding="async" alt="Starters Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="300">
+          <img src="Culinary%20Journey/statres1.jpeg" loading="lazy" decoding="async" alt="Starters Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="0">
+          <img src="Culinary%20Journey/mezze1.jpeg" loading="lazy" decoding="async" alt="Mezze Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="150">
+          <img src="Culinary%20Journey/mezze%202.jpeg" loading="lazy" decoding="async" alt="Mezze Menu" />
+        </div>
+      </div>
+
+      <!-- Main Courses -->
+      <div class="course-header" style="text-align: center; margin: 120px 0 50px">
+        <span style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 0.75rem;
+              font-weight: 500;
+              letter-spacing: 6px;
+              color: rgba(195, 163, 67, 0.8);
+              text-transform: uppercase;
+              display: block;
+              margin-bottom: 12px;
+            " data-aos="fade-up">Course III</span>
+        <h3 style="
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-size: 2.4rem;
+              color: #fff;
+              font-weight: 400;
+              letter-spacing: 1px;
+              margin-bottom: 25px;
+            " data-aos="fade-up" data-aos-delay="100">
+          Main Courses
+        </h3>
+        <div style="
+              width: 1px;
+              height: 50px;
+              background: linear-gradient(
+                to bottom,
+                rgba(195, 163, 67, 0.7),
+                transparent
+              );
+              margin: 0 auto;
+            " data-aos="fade-up" data-aos-delay="200"></div>
+      </div>
+      <div class="culinary-grid" style="
+            margin-top: 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 420px));
+            justify-content: center;
+          ">
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="0">
+          <img src="Culinary%20Journey/mains.jpeg" loading="lazy" decoding="async" alt="Mains Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="150">
+          <img src="Culinary%20Journey/trdintional%20oven%20dishes%201.jpeg" loading="lazy" decoding="async"
+            alt="Traditional Oven Dishes" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="300">
+          <img src="Culinary%20Journey/pasta.jpeg" loading="lazy" decoding="async" alt="Pasta Menu" />
+        </div>
+      </div>
+
+      <!-- Signature Kebabs -->
+      <div class="course-header" style="text-align: center; margin: 120px 0 50px">
+        <span style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 0.75rem;
+              font-weight: 500;
+              letter-spacing: 6px;
+              color: rgba(195, 163, 67, 0.8);
+              text-transform: uppercase;
+              display: block;
+              margin-bottom: 12px;
+            " data-aos="fade-up">Course IV</span>
+        <h3 style="
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-size: 2.4rem;
+              color: #fff;
+              font-weight: 400;
+              letter-spacing: 1px;
+              margin-bottom: 25px;
+            " data-aos="fade-up" data-aos-delay="100">
+          Signature Kebabs
+        </h3>
+        <div style="
+              width: 1px;
+              height: 50px;
+              background: linear-gradient(
+                to bottom,
+                rgba(195, 163, 67, 0.7),
+                transparent
+              );
+              margin: 0 auto;
+            " data-aos="fade-up" data-aos-delay="200"></div>
+      </div>
+      <div class="culinary-grid" style="
+            margin-top: 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 420px));
+            justify-content: center;
+          ">
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="0">
+          <img src="Culinary%20Journey/kebab.jpeg" loading="lazy" decoding="async" alt="Kebab Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="150">
+          <img src="Culinary%20Journey/kebabs%202.jpeg" loading="lazy" decoding="async" alt="Kebab Menu" />
+        </div>
+      </div>
+
+      <!-- The Lokum Specials -->
+      <div class="course-header" style="text-align: center; margin: 120px 0 50px">
+        <span style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 0.75rem;
+              font-weight: 500;
+              letter-spacing: 6px;
+              color: rgba(195, 163, 67, 0.8);
+              text-transform: uppercase;
+              display: block;
+              margin-bottom: 12px;
+            " data-aos="fade-up">Chef's Exclusives</span>
+        <h3 style="
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-size: 2.4rem;
+              color: #fff;
+              font-weight: 400;
+              letter-spacing: 1px;
+              margin-bottom: 25px;
+            " data-aos="fade-up" data-aos-delay="100">
+          The Lokum Specials
+        </h3>
+        <div style="
+              width: 1px;
+              height: 50px;
+              background: linear-gradient(
+                to bottom,
+                rgba(195, 163, 67, 0.7),
+                transparent
+              );
+              margin: 0 auto;
+            " data-aos="fade-up" data-aos-delay="200"></div>
+      </div>
+      <div class="culinary-grid" style="
+            margin-top: 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 420px));
+            justify-content: center;
+          ">
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="0">
+          <img src="Culinary%20Journey/lokum%20sepical.jpeg" loading="lazy" decoding="async" alt="Lokum Special Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="150">
+          <img src="Culinary%20Journey/lokumspecial%202.jpeg" loading="lazy" decoding="async"
+            alt="Lokum Special Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="300">
+          <img src="Culinary%20Journey/lokumspecial2.jpeg" loading="lazy" decoding="async" alt="Lokum Special Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="0">
+          <img src="Culinary%20Journey/kashmiri%20sepcial.jpeg" loading="lazy" decoding="async"
+            alt="Kashmiri Special Menu" />
+        </div>
+      </div>
+
+      <!-- Desserts -->
+      <div class="course-header" style="text-align: center; margin: 120px 0 50px">
+        <span style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 0.75rem;
+              font-weight: 500;
+              letter-spacing: 6px;
+              color: rgba(195, 163, 67, 0.8);
+              text-transform: uppercase;
+              display: block;
+              margin-bottom: 12px;
+            " data-aos="fade-up">Finale</span>
+        <h3 style="
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-size: 2.4rem;
+              color: #fff;
+              font-weight: 400;
+              letter-spacing: 1px;
+              margin-bottom: 25px;
+            " data-aos="fade-up" data-aos-delay="100">
+          Desserts
+        </h3>
+        <div style="
+              width: 1px;
+              height: 50px;
+              background: linear-gradient(
+                to bottom,
+                rgba(195, 163, 67, 0.7),
+                transparent
+              );
+              margin: 0 auto;
+            " data-aos="fade-up" data-aos-delay="200"></div>
+      </div>
+      <div class="culinary-grid" style="
+            margin-top: 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 420px));
+            justify-content: center;
+          ">
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="0">
+          <img src="Culinary%20Journey/dessert.jpeg" loading="lazy" decoding="async" alt="Dessert Menu" />
+        </div>
+      </div>
+
+      <!-- Drinks & Refreshments -->
+      <div class="course-header" style="text-align: center; margin: 120px 0 50px">
+        <span style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 0.75rem;
+              font-weight: 500;
+              letter-spacing: 6px;
+              color: rgba(195, 163, 67, 0.8);
+              text-transform: uppercase;
+              display: block;
+              margin-bottom: 12px;
+            " data-aos="fade-up">Libations</span>
+        <h3 style="
+              font-family: &quot;Playfair Display&quot;, serif;
+              font-size: 2.4rem;
+              color: #fff;
+              font-weight: 400;
+              letter-spacing: 1px;
+              margin-bottom: 25px;
+            " data-aos="fade-up" data-aos-delay="100">
+          Drinks & Refreshments
+        </h3>
+        <div style="
+              width: 1px;
+              height: 50px;
+              background: linear-gradient(
+                to bottom,
+                rgba(195, 163, 67, 0.7),
+                transparent
+              );
+              margin: 0 auto;
+            " data-aos="fade-up" data-aos-delay="200"></div>
+      </div>
+      <div class="culinary-grid" style="
+            margin-top: 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 420px));
+            justify-content: center;
+          ">
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="0">
+          <img src="Culinary%20Journey/drinks.jpeg" loading="lazy" decoding="async" alt="Drinks Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="150">
+          <img src="Culinary%20Journey/drinnks%202.jpeg" loading="lazy" decoding="async" alt="Drinks Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="300">
+          <img src="Culinary%20Journey/drinks3.jpeg" loading="lazy" decoding="async" alt="Drinks Menu" />
+        </div>
+        <div class="culinary-card" data-aos="fade-down" data-aos-delay="0">
+          <img src="Culinary%20Journey/drinks%204.jpeg" loading="lazy" decoding="async" alt="Drinks Menu" />
+        </div>
+      </div>
+
+      <br />
+      <br />
+
+      <div class="menu-actions">
+        <a href="menu.html" target="_blank" rel="noopener" class="btn-outline">View Full Menu</a>
+        <br />
+        <a href="https://drive.google.com/drive/folders/14kx1fKw83hNUSuvEbh6V617DU1KVlGL0?usp=sharing" target="_blank"
+          rel="noopener" class="btn-image">
+          <span>View More Food Images</span>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section id="gallery" class="section-padding">
+    <div class="container">
+      <div class="gallery-header">
+        <span class="section-tag-gold">The Sanctuary</span>
+        <h2 class="section-heading-premium">
+          Spaces of <span>The Lokum</span>
+        </h2>
+        <p class="gallery-subtitle">
+          An immersive journey through Anatolian-inspired architecture and
+          warm, glowing light.
+        </p>
+      </div>
+    </div>
+
+    <div class="gallery-wrapper">
+      <div class="gallery-track">
+        <div class="gallery-item">
+          <img src="images/outside.jpg" alt="The Entrance" data-speed="1.2" />
+          <div class="gallery-caption">The Grand Entrance</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/pic 18 v1.jpg" alt="Interior Seating" data-speed="1.2" />
+          <div class="gallery-caption">Warm Amber Glow</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/dsc03031.00000000.jpg" alt="Dining Area" data-speed="1.2" />
+          <div class="gallery-caption">Artisanal Details</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/pic 2 v1-2.jpg" alt="Private Nook" data-speed="1.2" />
+          <div class="gallery-caption">Quiet Moments</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/upper.webp" alt="Terrace" data-speed="1.2" />
+          <div class="gallery-caption">Heritage Vibes</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/outside2.jpg" alt="Terrace View" data-speed="1.2" />
+          <div class="gallery-caption">Open Skies</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/pic v1-2.jpg" alt="Interior View" data-speed="1.2" />
+          <div class="gallery-caption">Anatolian Geometry</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/ground.jpg" alt="Ground Floor" data-speed="1.2" />
+          <div class="gallery-caption">Heritage Floors</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/pic2 v1.jpg" alt="Seating" data-speed="1.2" />
+          <div class="gallery-caption">Curated Comfort</div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/pic3 v1.webp" alt="Vibe" data-speed="1.2" />
+          <div class="gallery-caption">The Lokum Spirit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="majlis" class="section-padding majlis-section">
+    <div class="majlis-pattern-overlay"></div>
+    <div class="luxury-glow"></div>
+
+    <div class="container">
+      <div class="majlis-content-wrapper">
+        <div class="majlis-header-wrap">
+          <span class="section-tag-gold" data-aos="fade-up">A Heritage Gathering</span>
+          <h2 class="section-heading-premium" data-aos="fade-up" data-aos-delay="100">
+            The Majlis
+          </h2>
+          <div class="premium-divider"></div>
+          <p class="majlis-text-refined" data-aos="fade-up" data-aos-delay="200">
+            The Majlis at The Lokum is a sanctuary of togetherness — where
+            conversations flow, time slows, and tradition comes alive.
+            Inspired by the age-old Anatolian gathering, it is a curated space
+            for shared meals, quiet reflections, and unforgettable evenings
+            under a canopy of warm, amber light.
+          </p>
+        </div>
+
+        <div class="majlis-staggered-grid">
+          <!-- Photo 1: Main Feature -->
+          <div class="majlis-col-large" data-aos="fade-right">
+            <div class="majlis-card main-card">
+              <img src="images/pic 9 v1.webp" alt="Majlis Gathering Space" loading="lazy" class="parallax-img" />
+              <div class="card-caption">Shared Heritage</div>
             </div>
-            <div class="row-action">
-              <span class="action-text">Maps</span>
-              <div class="arrow-svg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg></div>
+          </div>
+
+          <!-- Photo 2: Atmospheric Nook -->
+          <div class="majlis-col-small" data-aos="fade-left" data-aos-delay="200">
+            <div class="majlis-card side-card spotlight-card">
+              <img src="images/majlis.webp" alt="The Majlis Experience" loading="lazy" class="parallax-img" />
+              <div class="card-caption">Cultural Soul</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="continental-specials" class="chef-section"
+    style="position: relative; padding: 120px 0; background: #050505; border-top: 1px solid rgba(195,163,67,0.1); border-bottom: 1px solid rgba(195,163,67,0.1); overflow: hidden;">
+
+    <!-- Ambient Background Effects -->
+    <div class="luxury-bg-elements"
+      style="pointer-events: none; position: absolute; inset: 0; overflow: hidden; z-index: 0;">
+      <div class="glow-orb orb-1"
+        style="opacity: 0.08; top: 20%; left: -5%; background: #c3a343; width: 500px; height: 500px; filter: blur(120px);">
+      </div>
+      <div class="glow-orb orb-2"
+        style="opacity: 0.05; bottom: -10%; right: -5%; background: #ffffff; width: 600px; height: 600px; filter: blur(150px);">
+      </div>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <!-- Section Header -->
+      <div style="text-align: center; margin-bottom: 70px;">
+        <span class="section-tag-gold" data-aos="fade-up"
+          style="display: block; font-size: 0.85rem; letter-spacing: 4px; color: #c3a343; text-transform: uppercase; margin-bottom: 15px;">✦
+          Global Palette ✦</span>
+        <h2 class="section-heading-premium" data-aos="fade-up" data-aos-delay="100"
+          style="color: #fff; font-size: clamp(2.5rem, 5vw, 4rem); font-family: 'Playfair Display', serif; font-weight: 400; margin-bottom: 20px;">
+          Continental<br><em style="font-style: italic; color: #c3a343;">Specials</em></h2>
+        <div class="premium-divider" data-aos="fade-up" data-aos-delay="200"
+          style="margin: 0 auto 25px; width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #c3a343, transparent);">
+        </div>
+        <p class="section-text-light" data-aos="fade-up" data-aos-delay="300"
+          style="max-width: 500px; margin: 0 auto; color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.8;">
+          Handpicked signature dishes from around the world, curated by our chefs to bring a global resonance to your
+          dining experience.
+        </p>
+      </div>
+
+      <!-- Advanced Grid -->
+      <div class="continental-grid"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px;">
+
+        <!-- Dish 1 -->
+        <div class="continental-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-aos="fade-up"
+          style="position: relative; border-radius: 16px; overflow: hidden; height: 450px; cursor: pointer; border: 1px solid rgba(195,163,67,0.1); transform-style: preserve-3d; box-shadow: 0 15px 35px rgba(0,0,0,0.5);"
+          onmouseover="this.querySelector('.cont-overlay').style.backgroundColor='rgba(10,10,10,0.3)'; this.querySelector('.cont-img').style.transform='scale(1.08)';"
+          onmouseout="this.querySelector('.cont-overlay').style.backgroundColor='rgba(10,10,10,0.6)'; this.querySelector('.cont-img').style.transform='scale(1)';">
+          <img class="cont-img" src="food/chicken cesar salad.webp" alt="Chicken Caesar Salad"
+            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: absolute; inset: 0;" />
+          <div class="cont-overlay"
+            style="position: absolute; inset: 0; background: rgba(10,10,10,0.6); transition: background-color 0.5s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px 30px; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);">
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #c3a343; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: inline-block;">Salads</span>
+            <h3
+              style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin: 0 0 15px 0; font-weight: 400;">
+              Chicken Caesar</h3>
+            <p
+              style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0; transform: translateZ(20px);">
+              Crisp romaine lettuce tossed with grilled chicken, Parmesan cheese, croutons, and classic Caesar dressing.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dish 2 -->
+        <div class="continental-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-aos="fade-up"
+          data-aos-delay="150"
+          style="position: relative; border-radius: 16px; overflow: hidden; height: 450px; cursor: pointer; border: 1px solid rgba(195,163,67,0.1); transform-style: preserve-3d; box-shadow: 0 15px 35px rgba(0,0,0,0.5);"
+          onmouseover="this.querySelector('.cont-overlay').style.backgroundColor='rgba(10,10,10,0.3)'; this.querySelector('.cont-img').style.transform='scale(1.08)';"
+          onmouseout="this.querySelector('.cont-overlay').style.backgroundColor='rgba(10,10,10,0.6)'; this.querySelector('.cont-img').style.transform='scale(1)';">
+          <img class="cont-img" src="food/crum fried .webp" alt="Crumb Fried Chicken"
+            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: absolute; inset: 0;" />
+          <div class="cont-overlay"
+            style="position: absolute; inset: 0; background: rgba(10,10,10,0.6); transition: background-color 0.5s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px 30px; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);">
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #c3a343; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: inline-block;">Appetizers</span>
+            <h3
+              style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin: 0 0 15px 0; font-weight: 400;">
+              Crumb Fried Chicken</h3>
+            <p
+              style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0; transform: translateZ(20px);">
+              Golden, crispy fried chicken with a perfect blend of signature spices and aromatic herbs.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dish 3 -->
+        <div class="continental-card" data-tilt data-tilt-max="5" data-tilt-speed="400" data-aos="fade-up"
+          data-aos-delay="300"
+          style="position: relative; border-radius: 16px; overflow: hidden; height: 450px; cursor: pointer; border: 1px solid rgba(195,163,67,0.1); transform-style: preserve-3d; box-shadow: 0 15px 35px rgba(0,0,0,0.5);"
+          onmouseover="this.querySelector('.cont-overlay').style.backgroundColor='rgba(10,10,10,0.3)'; this.querySelector('.cont-img').style.transform='scale(1.08)';"
+          onmouseout="this.querySelector('.cont-overlay').style.backgroundColor='rgba(10,10,10,0.6)'; this.querySelector('.cont-img').style.transform='scale(1)';">
+          <img class="cont-img" src="food/chicken alferdo.webp" alt="Chicken Alfredo"
+            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: absolute; inset: 0;" />
+          <div class="cont-overlay"
+            style="position: absolute; inset: 0; background: rgba(10,10,10,0.6); transition: background-color 0.5s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px 30px; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);">
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #c3a343; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: inline-block;">Pasta</span>
+            <h3
+              style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin: 0 0 15px 0; font-weight: 400;">
+              Chicken Alfredo</h3>
+            <p
+              style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0; transform: translateZ(20px);">
+              Succulent chicken strips served over fettuccine pasta with a creamy Parmesan Alfredo sauce and fresh
+              herbs.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section id="videos" class="video-section"
+    style="position: relative; padding: 120px 0; background: #080808; border-bottom: 1px solid rgba(195,163,67,0.1); overflow: hidden;">
+
+    <!-- Ambient Background Effects -->
+    <div class="luxury-bg-elements"
+      style="pointer-events: none; position: absolute; inset: 0; overflow: hidden; z-index: 0;">
+      <div class="glow-orb orb-1"
+        style="opacity: 0.1; top: 30%; right: -5%; background: #c3a343; width: 450px; height: 450px; filter: blur(130px);">
+      </div>
+      <div class="glow-orb orb-2"
+        style="opacity: 0.05; bottom: 10%; left: -5%; background: #ffffff; width: 500px; height: 500px; filter: blur(140px);">
+      </div>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <!-- Section Header -->
+      <div style="text-align: center; margin-bottom: 70px;">
+        <span class="section-tag-gold" data-aos="fade-up"
+          style="display: block; font-size: 0.85rem; letter-spacing: 4px; color: #c3a343; text-transform: uppercase; margin-bottom: 15px;">✦
+          Cinematic Journey ✦</span>
+        <h2 class="section-heading-premium" data-aos="fade-up" data-aos-delay="100"
+          style="color: #fff; font-size: clamp(2.5rem, 5vw, 4rem); font-family: 'Playfair Display', serif; font-weight: 400; margin-bottom: 20px;">
+          Moving<br><em style="font-style: italic; color: #c3a343;">Moments</em></h2>
+        <div class="premium-divider" data-aos="fade-up" data-aos-delay="200"
+          style="margin: 0 auto 25px; width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #c3a343, transparent);">
+        </div>
+        <p class="section-text-light" data-aos="fade-up" data-aos-delay="300"
+          style="max-width: 550px; margin: 0 auto; color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.8;">
+          Experience the rhythm of our kitchens and the warmth of our ambience in motion. A glimpse into the soul of
+          Anatolia.
+        </p>
+      </div>
+
+      <!-- Advanced Video Grid -->
+      <div class="cinematic-video-grid"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 50px;">
+
+        <!-- VIDEO 1 -->
+        <div class="cinematic-card" data-aos="fade-up"
+          style="position: relative; border-radius: 20px; overflow: hidden; height: 550px; border: 1px solid rgba(195,163,67,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.6); transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); background: #000; cursor: pointer;"
+          onmouseover="this.querySelector('.cine-overlay').style.opacity='1'; this.style.transform='translateY(-10px)'; this.style.borderColor='rgba(195,163,67,0.5)'; this.style.boxShadow='0 25px 60px rgba(195,163,67,0.15)';"
+          onmouseout="this.querySelector('.cine-overlay').style.opacity='0'; this.style.transform='translateY(0)'; this.style.borderColor='rgba(195,163,67,0.15)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.6)';">
+          <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;">
+            <source src="videos/video-1-grid.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div
+            style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%); pointer-events: none;">
+          </div>
+
+          <div style="position: absolute; top: 30px; left: 30px; display: flex; align-items: center; gap: 10px;">
+            <div
+              style="width: 10px; height: 10px; background: #c3a343; border-radius: 50%; box-shadow: 0 0 10px #c3a343; animation: pulse 2s infinite;">
+            </div>
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #fff; text-transform: uppercase; letter-spacing: 2px;">Live</span>
+          </div>
+
+          <div style="position: absolute; bottom: 30px; left: 30px; right: 30px;">
+            <h3
+              style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin: 0 0 10px 0; font-weight: 400; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+              Culinary Craft</h3>
+            <p
+              style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(195,163,67,0.9); margin: 0; font-style: italic;">
+              “Taste Tradition. Savor Lokum.”</p>
+          </div>
+
+          <div class="cine-overlay"
+            style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.5s ease; display: flex; align-items: center; justify-content: center;">
+            <div
+              style="width: 80px; height: 80px; border-radius: 50%; border: 1px solid rgba(195,163,67,0.5); display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0.5);">
+              <span style="color: #c3a343; font-size: 1.2rem; margin-left: 5px;">▶</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIDEO 2 -->
+        <div class="cinematic-card" data-aos="fade-up" data-aos-delay="200"
+          style="position: relative; border-radius: 20px; overflow: hidden; height: 550px; border: 1px solid rgba(195,163,67,0.15); box-shadow: 0 20px 50px rgba(0,0,0,0.6); transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); background: #000; cursor: pointer;"
+          onmouseover="this.querySelector('.cine-overlay').style.opacity='1'; this.style.transform='translateY(-10px)'; this.style.borderColor='rgba(195,163,67,0.5)'; this.style.boxShadow='0 25px 60px rgba(195,163,67,0.15)';"
+          onmouseout="this.querySelector('.cine-overlay').style.opacity='0'; this.style.transform='translateY(0)'; this.style.borderColor='rgba(195,163,67,0.15)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.6)';">
+          <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;">
+            <source src="videos/lokum.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div
+            style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%); pointer-events: none;">
+          </div>
+
+          <div style="position: absolute; top: 30px; left: 30px; display: flex; align-items: center; gap: 10px;">
+            <div
+              style="width: 10px; height: 10px; background: #c3a343; border-radius: 50%; box-shadow: 0 0 10px #c3a343; animation: pulse 2s infinite;">
+            </div>
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #fff; text-transform: uppercase; letter-spacing: 2px;"></span>
+          </div>
+
+          <div style="position: absolute; bottom: 30px; left: 30px; right: 30px;">
+            <h3
+              style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin: 0 0 10px 0; font-weight: 400; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+              Lokum Ambience</h3>
+            <p
+              style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(195,163,67,0.9); margin: 0; font-style: italic;">
+              Where Every Bite Tells a Story</p>
+          </div>
+
+          <div class="cine-overlay"
+            style="position: absolute; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.5s ease; display: flex; align-items: center; justify-content: center;">
+            <div
+              style="width: 80px; height: 80px; border-radius: 50%; border: 1px solid rgba(195,163,67,0.5); display: flex; align-items: center; justify-content: center; background: rgba(10,10,10,0.5);">
+              <span style="color: #c3a343; font-size: 1.2rem; margin-left: 5px;">▶</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <style>
+      @keyframes pulse {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(195, 163, 67, 0.7);
+        }
+
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 10px rgba(195, 163, 67, 0);
+        }
+
+        100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(195, 163, 67, 0);
+        }
+      }
+    </style>
+  </section>
+  <!-- online order -->
+  <section id="order-online" class="order-section">
+    <div class="container">
+      <div class="order-header">
+        <span class="section-tag-gold">Exclusive Delivery</span>
+        <h2 class="section-heading-premium">The Lokum at Home</h2>
+        <p class="order-intro-text">
+          Experience the same artisan Turkish hospitality in the comfort of
+          your home. Our specialized packaging ensures every dish arrives as
+          if it just left our kitchen.
+        </p>
+      </div>
+
+      <div class="order-platforms-grid">
+        <!-- ZOMATO -->
+        <div class="order-platform-card order-platform-zomato">
+          <div class="order-platform-glow"></div>
+          <div class="order-platform-top">
+            <div class="order-platform-logo">
+              <img src="icons/pngwing.com (1).png" alt="Zomato" />
+            </div>
+            <span class="order-platform-badge">Available Now</span>
+          </div>
+          <h3 class="order-platform-name">Zomato</h3>
+          <p class="order-platform-desc">
+            Order our full signature menu with real-time tracking and premium
+            packaging — delivered fresh to your door.
+          </p>
+          <ul class="order-platform-perks">
+            <li><span>✦</span> Full Anatolian Menu</li>
+            <li><span>✦</span> Live Order Tracking</li>
+            <li><span>✦</span> Zomato Gold Benefits</li>
+          </ul>
+          <a href="https://www.zomato.com/it/bangalore/the-lokum-1-kalyan-nagar-bangalore"
+            class="order-platform-btn order-platform-btn--zomato" target="_blank" rel="noopener">
+            <span>Order on Zomato</span>
+            <span class="order-btn-arrow">→</span>
+          </a>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="order-platforms-divider">
+          <span class="order-divider-line"></span>
+          <span class="order-divider-text">OR</span>
+          <span class="order-divider-line"></span>
+        </div>
+
+        <!-- SWIGGY -->
+        <div class="order-platform-card order-platform-swiggy">
+          <div class="order-platform-glow"></div>
+          <div class="order-platform-top">
+            <div class="order-platform-logo">
+              <img src="icons/pngwing.com.png" alt="Swiggy" />
+            </div>
+            <span class="order-platform-badge">Coming soon</span>
+          </div>
+          <h3 class="order-platform-name">Swiggy</h3>
+          <p class="order-platform-desc">
+            Fast delivery with Swiggy's trusted network — enjoy The Lokum
+            experience whenever the craving calls.
+          </p>
+          <ul class="order-platform-perks">
+            <li><span>✦</span> Express Delivery</li>
+            <li><span>✦</span> Swiggy One Discounts</li>
+            <li><span>✦</span> Temperature-Safe Packing</li>
+          </ul>
+          <a href="https://www.swiggy.com/restaurants/the-lokum-kalyan-nagar-bangalore-1329547"
+            class="order-platform-btn order-platform-btn--swiggy" target="_blank" rel="noopener">
+            <span>Coming soon on Swiggy</span>
+            <span class="order-btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Benefits strip -->
+      <div class="order-benefits-strip">
+        <div class="order-benefit-item">
+          <span class="order-benefit-icon">📦</span>
+          <span>Artisan Packaging</span>
+        </div>
+        <div class="order-benefit-sep"></div>
+        <div class="order-benefit-item">
+          <span class="order-benefit-icon">🌡️</span>
+          <span>Temperature Controlled</span>
+        </div>
+        <div class="order-benefit-sep"></div>
+        <div class="order-benefit-item">
+          <span class="order-benefit-icon">🍽️</span>
+          <span>Full Signature Menu</span>
+        </div>
+        <div class="order-benefit-sep"></div>
+        <div class="order-benefit-item">
+          <span class="order-benefit-icon">⚡</span>
+          <span>Fast Dispatch</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reserve" class="reserve-section"
+    style="position: relative; padding: 120px 0; background: #050505; overflow: hidden; border-top: 1px solid rgba(195,163,67,0.1);">
+    <!-- Ambient Background -->
+    <div class="luxury-bg-elements"
+      style="pointer-events: none; position: absolute; inset: 0; overflow: hidden; z-index: 0;">
+      <div class="glow-orb"
+        style="position: absolute; opacity: 0.1; top: -10%; right: -10%; background: #c3a343; width: 600px; height: 600px; filter: blur(150px); border-radius: 50%;">
+      </div>
+      <div class="glow-orb"
+        style="position: absolute; opacity: 0.05; bottom: -10%; left: -10%; background: #ffffff; width: 600px; height: 600px; filter: blur(150px); border-radius: 50%;">
+      </div>
+      <div class="majlis-pattern-overlay"
+        style="opacity: 0.05; background-image: url('images/pattern-bg.png'); background-size: cover; mix-blend-mode: overlay; position: absolute; inset: 0;">
+      </div>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <!-- Header -->
+      <div class="header-group" style="text-align: center; margin-bottom: 70px;">
+        <span class="eyebrow" data-aos="fade-up"
+          style="display: block; font-size: 0.85rem; letter-spacing: 4px; color: #c3a343; text-transform: uppercase; margin-bottom: 15px;">✦
+          Exclusivity ✦</span>
+        <h2 class="display-title" data-aos="fade-up" data-aos-delay="100"
+          style="color: #fff; font-size: clamp(2.5rem, 5vw, 4rem); font-family: 'Playfair Display', serif; font-weight: 400; margin-bottom: 20px;">
+          Curated Dining<br><em style="font-style: italic; color: #c3a343;">Access</em></h2>
+        <div class="premium-divider" data-aos="fade-up" data-aos-delay="200"
+          style="margin: 0 auto 25px; width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #c3a343, transparent);">
+        </div>
+        <p class="section-text-light" data-aos="fade-up" data-aos-delay="300"
+          style="max-width: 550px; margin: 0 auto; color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.8;">
+          Secure your table through our premier culinary partners and ensure a seamless, priority experience.</p>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="premium-grid"
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+
+        <!-- ZOMATO -->
+        <a href="https://www.zomato.com/it/bangalore/the-lokum-1-kalyan-nagar-bangalore" data-aos="fade-up"
+          target="_blank" rel="noopener"
+          style="display: block; position: relative; border-radius: 20px; overflow: hidden; background: rgba(15,15,15,0.6); border: 1px solid rgba(195,163,67,0.15); box-shadow: 0 15px 40px rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 40px 30px; text-decoration: none; transition: all 0.4s ease; cursor: pointer; transform: translateY(0);"
+          onmouseover="this.style.transform='translateY(-10px)'; this.style.borderColor='rgba(195,163,67,0.5)'; this.style.boxShadow='0 25px 50px rgba(226,55,68,0.2)'; this.querySelector('.icon-arrow').style.transform='translateX(5px)'; this.querySelector('.hover-glow').style.opacity='1';"
+          onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(195,163,67,0.15)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.5)'; this.querySelector('.icon-arrow').style.transform='translateX(0)'; this.querySelector('.hover-glow').style.opacity='0';">
+          <div class="hover-glow"
+            style="position: absolute; top:0; left:0; right:0; height: 150px; background: radial-gradient(circle at top, rgba(226,55,68,0.15) 0%, transparent 70%); opacity: 0; transition: opacity 0.5s ease; pointer-events: none;">
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
+            <div
+              style="width: 65px; height: 65px; border-radius: 16px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+              <img src="icons/pngwing.com (1).png" alt="Zomato"
+                style="width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.75rem; background: rgba(195,163,67,0.1); color: #c3a343; padding: 6px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(195,163,67,0.3);">Prime</span>
+          </div>
+
+          <div style="margin-bottom: 30px; position: relative; z-index: 1;">
+            <h3
+              style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin: 0 0 10px 0; font-weight: 400;">
+              Zomato Gold</h3>
+            <p
+              style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">
+              Unlock 1+1 on gourmet dining and prioritized table assignments.</p>
+          </div>
+
+          <div
+            style="display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1;">
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #c3a343; font-weight: 500; transition: color 0.3s ease;">Explore
+              Benefits</span>
+            <span class="icon-arrow"
+              style="color: #c3a343; font-size: 1.2rem; transition: transform 0.3s ease; display: inline-block;">→</span>
+          </div>
+        </a>
+
+        <!-- SWIGGY -->
+        <a href="https://www.swiggy.com/restaurants/the-lokum-kalyan-nagar-bangalore-1329547/dineout" data-aos="fade-up"
+          data-aos-delay="150" target="_blank" rel="noopener"
+          style="display: block; position: relative; border-radius: 20px; overflow: hidden; background: rgba(15,15,15,0.6); border: 1px solid rgba(195,163,67,0.15); box-shadow: 0 15px 40px rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 40px 30px; text-decoration: none; transition: all 0.4s ease; cursor: pointer; transform: translateY(0);"
+          onmouseover="this.style.transform='translateY(-10px)'; this.style.borderColor='rgba(195,163,67,0.5)'; this.style.boxShadow='0 25px 50px rgba(252,128,25,0.2)'; this.querySelector('.icon-arrow').style.transform='translateX(5px)'; this.querySelector('.hover-glow').style.opacity='1';"
+          onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(195,163,67,0.15)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.5)'; this.querySelector('.icon-arrow').style.transform='translateX(0)'; this.querySelector('.hover-glow').style.opacity='0';">
+          <div class="hover-glow"
+            style="position: absolute; top:0; left:0; right:0; height: 150px; background: radial-gradient(circle at top, rgba(252,128,25,0.15) 0%, transparent 70%); opacity: 0; transition: opacity 0.5s ease; pointer-events: none;">
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
+            <div
+              style="width: 65px; height: 65px; border-radius: 16px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+              <img src="icons/pngwing.com.png" alt="Swiggy" style="width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.75rem; background: rgba(195,163,67,0.1); color: #c3a343; padding: 6px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(195,163,67,0.3);">Elite</span>
+          </div>
+
+          <div style="margin-bottom: 30px; position: relative; z-index: 1;">
+            <h3
+              style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin: 0 0 10px 0; font-weight: 400;">
+              Dineout</h3>
+            <p
+              style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">
+              Seamless reservations with exclusive dining discounts across our menu.</p>
+          </div>
+
+          <div
+            style="display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1;">
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #c3a343; font-weight: 500; transition: color 0.3s ease;">Reserve
+              Now</span>
+            <span class="icon-arrow"
+              style="color: #c3a343; font-size: 1.2rem; transition: transform 0.3s ease; display: inline-block;">→</span>
+          </div>
+        </a>
+
+        <!-- EAZYDINER -->
+        <a href="https://www.eazydiner.com/bengaluru/the-lokum-kalyan-nagar-north-bengaluru-710894" data-aos="fade-up"
+          data-aos-delay="300" target="_blank" rel="noopener"
+          style="display: block; position: relative; border-radius: 20px; overflow: hidden; background: rgba(15,15,15,0.6); border: 1px solid rgba(195,163,67,0.15); box-shadow: 0 15px 40px rgba(0,0,0,0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 40px 30px; text-decoration: none; transition: all 0.4s ease; cursor: pointer; transform: translateY(0);"
+          onmouseover="this.style.transform='translateY(-10px)'; this.style.borderColor='rgba(195,163,67,0.5)'; this.style.boxShadow='0 25px 50px rgba(235,90,52,0.2)'; this.querySelector('.icon-arrow').style.transform='translateX(5px)'; this.querySelector('.hover-glow').style.opacity='1';"
+          onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(195,163,67,0.15)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.5)'; this.querySelector('.icon-arrow').style.transform='translateX(0)'; this.querySelector('.hover-glow').style.opacity='0';">
+          <div class="hover-glow"
+            style="position: absolute; top:0; left:0; right:0; height: 150px; background: radial-gradient(circle at top, rgba(235,90,52,0.15) 0%, transparent 70%); opacity: 0; transition: opacity 0.5s ease; pointer-events: none;">
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px;">
+            <div
+              style="width: 65px; height: 65px; border-radius: 16px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+              <img src="icons/EazyDiner_idll3m2RgX_0.png" alt="EazyDiner"
+                style="width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.75rem; background: rgba(195,163,67,0.1); color: #c3a343; padding: 6px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(195,163,67,0.3);">VIP</span>
+          </div>
+
+          <div style="margin-bottom: 30px; position: relative; z-index: 1;">
+            <h3
+              style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin: 0 0 10px 0; font-weight: 400;">
+              EazyDiner</h3>
+            <p
+              style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">
+              Guaranteed reservations at premium culinary destinations.</p>
+          </div>
+
+          <div
+            style="display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1;">
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #c3a343; font-weight: 500; transition: color 0.3s ease;">View
+              VIP</span>
+            <span class="icon-arrow"
+              style="color: #c3a343; font-size: 1.2rem; transition: transform 0.3s ease; display: inline-block;">→</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact-info" class="premium-contact-suite">
+    <div class="contact-glow-orb"></div>
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Left: Branding & Intent -->
+        <div class="contact-info-panel" data-aos="fade-right">
+          <span class="contact-eyebrow">Availability</span>
+          <h2 class="contact-display-title">
+            Let’s Start a <span>Conversation</span>
+          </h2>
+          <p class="contact-panel-text">
+            Whether it’s a table booking, a special event, or just a question
+            about our Anatolian flavors, we’re here to assist.
+          </p>
+
+          <div class="contact-status-badge">
+            <span class="pulse-dot"></span>
+            <span class="status-msg">We’re currently attending guests</span>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="contact-action-row">
+            <a href="tel:+917204616662" class="quick-contact-btn call-btn">
+              <span>Call Us</span>
+            </a>
+            <a href="https://wa.me/917204616662" class="quick-contact-btn wa-btn">
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Contact Cards -->
+        <div class="contact-cards-panel" data-aos="fade-left">
+          <!-- Card: Maps -->
+          <a href="https://www.google.com/maps/place/The+Lokum/@13.022355,77.640031,15z/data=!4m6!3m5!1s0x3bae170513bf8c23:0xb56ac2a84118ed98"
+            class="luxury-contact-card map-theme">
+            <div class="card-glow"></div>
+            <div class="card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div class="card-content">
+              <span class="card-label">Find Us</span>
+              <h3 class="card-value">Bengaluru, HRBR</h3>
+            </div>
+            <div class="card-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </div>
           </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer class="footer">
-      <div class="footer-container">
+  <footer id="ultra-footer"
+    style="position: relative; padding: 80px 0 30px; background: #030303; overflow: hidden; border-top: 1px solid rgba(195,163,67,0.2);">
 
-        <!-- Brand Info -->
-        <div class="footer-brand">
-          <h2>THE LOKUM</h2>
-          <p>Elevated Turkish dining in the heart of Kalyan Nagar. Experience the art of the feast.</p>
+    <!-- Animated Light Beams & Orbs -->
+    <div style="position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0;">
+      <div
+        style="position: absolute; top: -20%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(195,163,67,0.15) 0%, transparent 70%); filter: blur(80px); animation: floatSlow 10s infinite alternate;">
+      </div>
+      <div
+        style="position: absolute; bottom: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); filter: blur(100px); animation: floatSlow 15s infinite alternate-reverse;">
+      </div>
 
-          <div class="trust-badges">
-            <div class="google-trust">
-              <span class="rating-number">4.8</span>
-              <span class="rating-stars">★★★★★</span>
+      <!-- Huge Watermark -->
+      <div
+        style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); font-family: 'Playfair Display', serif; font-size: 22vw; color: rgba(255,255,255,0.012); white-space: nowrap; font-weight: 700;">
+        LOKUM</div>
+    </div>
+
+    <div class="container" style="position: relative; z-index: 5;">
+      <!-- Ultra Hero Footer Section -->
+      <div style="text-align: center; margin-bottom: 60px;">
+        <span data-aos="fade-up"
+          style="font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 5px; color: #c3a343; text-transform: uppercase;">✦
+          The Grand Finale ✦</span>
+        <h2 data-aos="fade-up" data-aos-delay="100"
+          style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); color: #fff; margin: 15px 0; font-weight: 400; line-height: 1.1;">
+          Crafting <br><em
+            style="font-style: italic; color: transparent; -webkit-text-stroke: 1px #c3a343; background: linear-gradient(90deg, #c3a343, #fff); -webkit-background-clip: text; background-clip: text;">Eternity.</em>
+        </h2>
+        <a href="#reserve" data-aos="zoom-in" data-aos-delay="200"
+          style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; padding: 12px 30px; border-radius: 40px; background: rgba(195,163,67,0.1); border: 1px solid rgba(195,163,67,0.4); color: #c3a343; font-family: 'Inter', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; backdrop-filter: blur(10px); transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); box-shadow: 0 5px 15px rgba(0,0,0,0.3);"
+          onmouseover="this.style.background='#c3a343'; this.style.color='#000'; this.style.boxShadow='0 10px 25px rgba(195,163,67,0.3)'; this.style.transform='translateY(-3px)';"
+          onmouseout="this.style.background='rgba(195,163,67,0.1)'; this.style.color='#c3a343'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.3)'; this.style.transform='translateY(0)';">
+          Reserve Your Table
+          <span style="font-size: 1.2rem; transform: translateY(-1px); display: inline-block;">→</span>
+        </a>
+      </div>
+
+      <!-- Super Grid Configuration -->
+      <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 30px; margin-bottom: 80px;">
+
+        <!-- Left Panel: Brand info & discovery -->
+        <div data-aos="fade-right"
+          style="grid-column: span 12; position: relative; padding: 35px; border-radius: 25px; background: rgba(15,15,15,0.4); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px); box-shadow: inset 0 0 0 1px rgba(195,163,67,0.1), 0 20px 50px rgba(0,0,0,0.5); overflow: hidden;">
+          <!-- Inline CSS for media queries to handle grid span -->
+          <style>
+            @media(min-width: 992px) {
+              .super-left-panel {
+                grid-column: span 5 !important;
+              }
+
+              .super-right-panel {
+                grid-column: span 7 !important;
+              }
+            }
+          </style>
+
+          <div
+            style="position: absolute; top:0; left:0; right:0; height: 150px; background: radial-gradient(circle at top left, rgba(195,163,67,0.1) 0%, transparent 70%); pointer-events: none;">
+          </div>
+
+          <img src="images/logo-footer.png" alt="Lokum"
+            style="width: 90px; margin-bottom: 25px; filter: drop-shadow(0 0 15px rgba(195,163,67,0.4)); position: relative; z-index: 1;" />
+          <h4
+            style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff; margin: 0 0 15px 0; position: relative; z-index: 1;">
+            Anatolia & Beyond</h4>
+          <p
+            style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 25px; max-width: 90%; position: relative; z-index: 1;">
+            Embark on a culinary odyssey. Every dish holds centuries of tradition, crafted carefully for the modern
+            connoisseur. Experience true opulence in Bengaluru.
+          </p>
+          <div style="display: flex; gap: 15px; position: relative; z-index: 1;">
+            <a href="https://www.instagram.com/the_lokum_restaurant/" target="_blank"
+              style="width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(195,163,67,0.3); color: #c3a343; background: rgba(10,10,10,0.5); transition: all 0.4s ease; backdrop-filter: blur(5px);"
+              onmouseover="this.style.background='#c3a343'; this.style.color='#000'; this.style.transform='scale(1.1) rotate(10deg)';"
+              onmouseout="this.style.background='rgba(10,10,10,0.5)'; this.style.color='#c3a343'; this.style.transform='scale(1) rotate(0deg)';">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="18">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://wa.me/917204616662" target="_blank"
+              style="width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(37,211,102,0.3); color: #25D366; background: rgba(10,10,10,0.5); transition: all 0.4s ease; backdrop-filter: blur(5px);"
+              onmouseover="this.style.background='#25D366'; this.style.color='#000'; this.style.transform='scale(1.1) rotate(-10deg)';"
+              onmouseout="this.style.background='rgba(10,10,10,0.5)'; this.style.color='#25D366'; this.style.transform='scale(1) rotate(0deg)';">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" width="18">
+                <path
+                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Panel Container -->
+        <div class="super-right-panel" style="grid-column: span 12; display: flex; flex-direction: column; gap: 30px;">
+
+          <!-- Top Row: Links & Experience -->
+          <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; height: 100%;">
+
+            <!-- Quick Links -->
+            <div data-aos="fade-up" data-aos-delay="100"
+              style="padding: 30px; border-radius: 25px; background: rgba(15,15,15,0.4); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px); box-shadow: 0 15px 30px rgba(0,0,0,0.5);">
+              <span
+                style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #c3a343; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px; border-left: 2px solid #c3a343; padding-left: 10px;">Journey</span>
+              <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 15px;">
+                <li><a href="#hero"
+                    style="font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #fff; text-decoration: none; transition: all 0.3s ease; display: inline-block; position: relative;"
+                    onmouseover="this.style.color='#c3a343'; this.style.transform='translateX(8px)';"
+                    onmouseout="this.style.color='#fff'; this.style.transform='translateX(0)';">Home</a></li>
+                <li><a href="#about"
+                    style="font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #fff; text-decoration: none; transition: all 0.3s ease; display: inline-block; position: relative;"
+                    onmouseover="this.style.color='#c3a343'; this.style.transform='translateX(8px)';"
+                    onmouseout="this.style.color='#fff'; this.style.transform='translateX(0)';">Our Story</a></li>
+                <li><a href="#instagram-highlights"
+                    style="font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #fff; text-decoration: none; transition: all 0.3s ease; display: inline-block; position: relative;"
+                    onmouseover="this.style.color='#c3a343'; this.style.transform='translateX(8px)';"
+                    onmouseout="this.style.color='#fff'; this.style.transform='translateX(0)';">Instagram</a></li>
+                <li><a href="#majlis"
+                    style="font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #fff; text-decoration: none; transition: all 0.3s ease; display: inline-block; position: relative;"
+                    onmouseover="this.style.color='#c3a343'; this.style.transform='translateX(8px)';"
+                    onmouseout="this.style.color='#fff'; this.style.transform='translateX(0)';">Gatherings</a></li>
+                <li><a href="menu.html"
+                    style="font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #fff; text-decoration: none; transition: all 0.3s ease; display: inline-block; position: relative;"
+                    onmouseover="this.style.color='#c3a343'; this.style.transform='translateX(8px)';"
+                    onmouseout="this.style.color='#fff'; this.style.transform='translateX(0)';">The Menu</a></li>
+                <li><a href="#gallery"
+                    style="font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #fff; text-decoration: none; transition: all 0.3s ease; display: inline-block; position: relative;"
+                    onmouseover="this.style.color='#c3a343'; this.style.transform='translateX(8px)';"
+                    onmouseout="this.style.color='#fff'; this.style.transform='translateX(0)';">Spaces</a></li>
+              </ul>
             </div>
-            <div class="social-links">
-              <a href="https://www.instagram.com/the_lokum_restaurant/" target="_blank" rel="noopener"
-                class="social-circle">
-                <img src="icons/instagram.png" alt="Instagram" width="24">
+
+            <!-- Experience Info -->
+            <div data-aos="fade-up" data-aos-delay="200"
+              style="padding: 30px; border-radius: 25px; background: rgba(15,15,15,0.4); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center;">
+              <div
+                style="position: absolute; top: -50px; right: -50px; font-size: 15rem; color: rgba(255,255,255,0.02); font-family: 'Playfair Display', serif; pointer-events: none; line-height: 1;">
+                &</div>
+              <div style="margin-bottom: 20px; position: relative; z-index: 1;">
+                <span
+                  style="display: block; font-family: 'Inter', sans-serif; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Hours</span>
+                <span
+                  style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.05rem; color: #c3a343;">12:30
+                  PM — 12:30 AM</span>
+              </div>
+              <div style="margin-bottom: 20px; position: relative; z-index: 1;">
+                <span
+                  style="display: block; font-family: 'Inter', sans-serif; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Address</span>
+                <span
+                  style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.95rem; color: #fff; line-height: 1.4;">Kalyan
+                  Nagar, HRBR<br>Bengaluru</span>
+              </div>
+              <div style="position: relative; z-index: 1;">
+                <a href="mailto:mail@thelokumrestaurant.com"
+                  style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #c3a343; text-decoration: none; border-bottom: 1px solid rgba(195,163,67,0.3); padding-bottom: 5px; transition: all 0.3s ease;"
+                  onmouseover="this.style.borderBottomColor='#c3a343';"
+                  onmouseout="this.style.borderBottomColor='rgba(195,163,67,0.3)';">
+                </a>
+              </div>
+            </div>
+            <!-- Availability Info -->
+            <div data-aos="fade-up" data-aos-delay="300"
+              style="padding: 30px; border-radius: 25px; background: rgba(15,15,15,0.4); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: center;">
+              <span
+                style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #c3a343; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 20px; border-left: 2px solid #c3a343; padding-left: 10px;">Presence</span>
+              <div style="margin-bottom: 15px;">
+                <span
+                  style="display: block; font-family: 'Inter', sans-serif; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Availability</span>
+                <span style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 1.05rem; color: #fff;">Open
+                  for Bookings</span>
+              </div>
+              <div>
+                <span
+                  style="display: block; font-family: 'Inter', sans-serif; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Peak
+                  Hours</span>
+                <span
+                  style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.95rem; color: rgba(255,255,255,0.8);">Weekends
+                  7PM+</span>
+              </div>
+            </div>
+
+            <!-- Conversation Card -->
+            <div data-aos="fade-up" data-aos-delay="400"
+              style="padding: 30px; border-radius: 25px; background: rgba(195,163,67,0.05); border: 1px solid rgba(195,163,67,0.2); backdrop-filter: blur(20px); box-shadow: 0 15px 30px rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: center;">
+              <span
+                style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #c3a343; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Let’s
+                Start a</span>
+              <h5
+                style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin: 0 0 15px 0; font-weight: 400;">
+                Conversation</h5>
+              <a href="mailto:mail@thelokumrestaurant.com"
+                style="display: inline-flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #fff; text-decoration: none; background: #c3a343; padding: 10px 20px; border-radius: 50px; width: fit-content; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;"
+                onmouseover="this.style.background='#fff'; this.style.color='#000';"
+                onmouseout="this.style.background='#c3a343'; this.style.color='#fff';">
+                Contact Us
               </a>
             </div>
           </div>
-        </div>
 
-        <!-- Navigation Links -->
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <ul class="footer-links">
-            <li><a href="menu.html">The Menu</a></li>
-            <li><a href="#reserve">Book a Table</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#about">Our Story</a></li>
-            <li><a href="#contact-info">Contact</a></li>
-          </ul>
-        </div>
+          <!-- Bottom Map Card -->
+          <div data-aos="fade-up" data-aos-delay="300"
+            style="flex-grow: 1; border-radius: 30px; overflow: hidden; border: 1px solid rgba(195,163,67,0.3); position: relative; min-height: 200px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <iframe src="https://www.google.com/maps?q=The+Lokum+Kalyan+Nagar+Bengaluru&output=embed" allowfullscreen=""
+              loading="lazy"
+              style="width: 100%; height: 100%; min-height: 200px; border: none; filter: contrast(1.2) brightness(0.8) saturate(0.5) hue-rotate(15deg); transition: all 0.8s ease;"
+              onmouseover="this.style.filter='none';"></iframe>
+            <a href="https://www.google.com/maps/dir//The+Lokum+5th+A+Main+Rd+HRBR+Layout+Kalyan+Nagar+Bengaluru"
+              target="_blank"
+              style="position: absolute; bottom: 20px; right: 20px; background: rgba(10,10,10,0.8); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 12px 25px; border-radius: 50px; border: 1px solid rgba(195,163,67,0.5); color: #c3a343; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.5);"
+              onmouseover="this.style.background='#c3a343'; this.style.color='#000'; this.style.transform='translateY(-5px)';"
+              onmouseout="this.style.background='rgba(10,10,10,0.8)'; this.style.color='#c3a343'; this.style.transform='translateY(0)';">
+              Navigate
+            </a>
+          </div>
 
-        <!-- Find Us / Map -->
-        <div class="footer-col">
-          <h4>Find Us</h4>
-          <div class="map-card">
-            <div class="map-wrapper">
-              <iframe src="https://www.google.com/maps?q=The+Lokum+Kalyan+Nagar+Bengaluru&output=embed" width="100%"
-                height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- Sleek Trust & Review Badge -->
+      <div style="display: flex; justify-content: center; margin-bottom: 60px;">
+        <a href="https://search.google.com/local/writereview?placeid=ChIJI4y_EwUXrjsRmO0YQajCarU" target="_blank"
+          data-aos="zoom-in"
+          style="display: inline-flex; align-items: center; gap: 20px; padding: 12px 30px 12px 15px; border-radius: 50px; background: rgba(15,15,15,0.6); border: 1px solid rgba(195,163,67,0.2); box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(195,163,67,0.05); backdrop-filter: blur(20px); text-decoration: none; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); cursor: pointer;"
+          onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='rgba(195,163,67,0.6)'; this.style.boxShadow='0 20px 40px rgba(195,163,67,0.2), inset 0 0 30px rgba(195,163,67,0.1)';"
+          onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(195,163,67,0.2)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(195,163,67,0.05)';">
+
+          <div
+            style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #ffffff, #e0e0e0); display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+            <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                fill="#4285F4" />
+              <path
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                fill="#34A853" />
+              <path
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                fill="#FBBC05" />
+              <path
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                fill="#EA4335" />
+            </svg>
+          </div>
+
+          <div style="display: flex; flex-direction: column; justify-content: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span
+                style="font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff;">4.5</span>
+              <span style="color: #FBBC05; font-size: 1rem; letter-spacing: 2px;">★★★★★</span>
             </div>
-            <p style="font-size: 0.8rem; margin: 15px 10px 5px; color: #fff;">
-              5th A Main Rd, HRBR Layout, Bengaluru
-            </p>
-          </div>
-        </div>
-
-        <div class="iftar-timer">
-          <span class="iftar-label">Ramzan Iftar</span>
-          <h5 id="iftarCountdown">Calculating Iftar time…</h5>
-          <p class="iftar-note">
-            As the sun sets, we are ready to welcome you to break your fast with warmth,
-            tradition, and our special Ramzan platter.
-          </p>
-        </div>
-        <!-- Opening Hours -->
-        <div class="footer-col">
-          <h4>Opening Hours</h4>
-          <ul class="footer-hours">
-            <li>Mon - Fri: 12:30 PM – 12:00 AM</li>
-            <li>Sat - Sun: 12:30 PM – 12:30 AM</li>
-          </ul>
-          <!-- Iftar Timer -->
-
-
-
-          <!-- Theme Toggle -->
-          <div class="theme-switch">
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-              <span class="sun">☀</span>
-              <span class="moon">☾</span>
-              <span class="toggle-thumb"></span>
-            </button>
-            <span class="theme-label" id="themeLabel">Dark Mode</span>
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px;">Google
+              Reviews</span>
           </div>
 
+          <div
+            style="margin-left: 15px; padding-left: 20px; border-left: 1px solid rgba(195,163,67,0.2); display: flex; align-items: center;">
+            <span
+              style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: #c3a343; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">Discover</span>
+            <span style="color: #c3a343; font-size: 1.1rem; margin-left: 5px;">→</span>
+          </div>
+
+        </a>
+      </div>
+
+      <!-- Footer Ultimate Bottom -->
+      <div
+        style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 30px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255,255,255,0.4);">
+        <div style="flex: 1; min-width: 250px;">
+          <span>&copy; 2025 Aizah Ventures LLP. <br>All Rights Reserved.</span>
         </div>
-        <a href="https://search.google.com/local/writereview?placeid=ChIJI4y_EwUXrjsRmO0YQajCarU" 
-   class="suite-row review-row" 
-   target="_blank">
-  
-  <div class="row-main">
-    <div class="icon-sphere">
-      <!-- Star Icon -->
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24
-                 l-7.19-.61L12 2 9.19 8.63
-                 2 9.24l5.46 4.73L5.82 21z"/>
-      </svg>
-    </div>
-
-    <div class="label-group">
-      <span class="category">Google Reviews</span>
-      <span class="value">Rate & Share Your Experience</span>
-    </div>
-  </div>
-
-  <div class="row-action">
-    <span class="action-text">Leave Review</span>
-    <div class="arrow-svg">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
-    </div>
-  </div>
-</a>
-
-        <div class="footer-bottom"
-          style="text-align: center; margin-top: 80px; opacity: 0.4; font-size: 0.7rem; letter-spacing: 2px;">
-          <p>© 2026 THE LOKUM — DESIGNED BY MEHDI</p>
-          <p><a href="privacy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> | <a
-              href="terms.html" style="color: inherit; text-decoration: underline;">Terms & Conditions</a></p>
+        <div style="flex: 1; min-width: 200px; text-align: center;">
+          <button id="themeToggle" aria-label="Toggle Theme"
+            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(195,163,67,0.3); padding: 12px 25px; border-radius: 30px; color: #c3a343; font-family: 'Inter', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.5);"
+            onmouseover="this.style.background='rgba(195,163,67,0.2)'; this.style.color='#fff';"
+            onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='#c3a343';">
+            Visual Environment
+          </button>
         </div>
-    </footer>
+        <div
+          style="flex: 1; min-width: 250px; display: flex; justify-content: flex-end; align-items: center; gap: 20px;">
+          <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s ease;"
+            onmouseover="this.style.color='#fff';" onmouseout="this.style.color='rgba(255,255,255,0.4)';">Privacy</a>
+          <a href="#" style="color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s ease;"
+            onmouseover="this.style.color='#fff';" onmouseout="this.style.color='rgba(255,255,255,0.4)';">Terms</a>
+          <div
+            style="padding-left: 20px; border-left: 1px solid rgba(255,255,255,0.1); color: #c3a343; font-size: 0.6rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px;">
+            Crafted by <strong style="font-weight: 600; color: rgba(255,255,255,0.8);">Mehdi</strong>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  </div>
+    <style>
+      @keyframes floatSlow {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
 
+        33% {
+          transform: translate(30px, -50px) scale(1.1);
+        }
 
+        66% {
+          transform: translate(-20px, 20px) scale(0.9);
+        }
 
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+      }
 
-  </div>
+      .super-left-panel {
+        grid-column: span 12;
+      }
+
+      @media(min-width: 992px) {
+        .super-right-panel {
+          grid-column: span 7 !important;
+        }
+      }
+    </style>
+  </footer>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
   <script async src="https://www.instagram.com/embed.js"></script>
-  <!-- Ramzan Offer Popup -->
-  <div class="ramzan-popup-left" id="RamzanOfferPopup">
-    <div class="ramzan-popup-content">
-      <button class="ramzan-close" aria-label="Close">&times;</button>
-      <span class="ramzan-badge">Ramzan Mubarak</span>
-      <h4>Ramzan Platter</h4>
-      <p>
-        Break your fast with our specially curated <strong>Ramzan Platter</strong>, crafted with tradition & warmth.
-      </p>
-      <a href="#ramzan-specials" class="ramzan-popup-btn">View Special Menu</a>
-    </div>
-  </div>
+  <script src="script.js" defer></script>
 </body>
 
 </html>

@@ -1,259 +1,341 @@
+/* ─── HAMBURGER MENU — runs always, no GSAP needed ─── */
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('#menuToggle');
+  const mobileMenu = document.querySelector('#mobileMenu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
 
-(() => {
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.ticker.fps(60);
-
-  /* ================= NAVIGATION ================= */
-  function initNavigation() {
-    const menuToggle = document.getElementById("menuToggle");
-    const mobileMenu = document.getElementById("mobileMenu");
-    const mobileLinks = document.querySelectorAll(".mobile-link");
-    const navbar = document.querySelector(".navbar");
-
+  if (menuToggle && mobileMenu) {
     const toggleMenu = (forceClose = false) => {
-      const isOpening = forceClose
-        ? false
-        : !mobileMenu?.classList.contains("active");
-
-      menuToggle?.classList.toggle("active", isOpening);
-      mobileMenu?.classList.toggle("active", isOpening);
-      document.body.style.overflow = isOpening ? "hidden" : "";
+      const isOpening = forceClose ? false : !mobileMenu.classList.contains('active');
+      menuToggle.classList.toggle('active', isOpening);
+      mobileMenu.classList.toggle('active', isOpening);
+      document.body.style.overflow = isOpening ? 'hidden' : '';
     };
 
-    menuToggle?.addEventListener("click", () => toggleMenu());
-    mobileLinks.forEach(link =>
-      link.addEventListener("click", () => toggleMenu(true))
-    );
+    menuToggle.addEventListener('click', () => toggleMenu());
 
-    window.addEventListener("scroll", () => {
-      navbar?.classList.toggle("scrolled", window.scrollY > 50);
+    mobileLinks.forEach(link => link.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('active')) toggleMenu(true);
+    }));
+
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) toggleMenu(true);
     });
   }
 
+  // Navbar scroll style
+  const navbar = document.querySelector('.navbar');
+  let scrollTicking = false;
+  window.addEventListener('scroll', () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      navbar?.classList.toggle('scrolled', window.scrollY > 50);
+      scrollTicking = false;
+    });
+  }, { passive: true });
+
+  /* ─── VIDEO AUTOPLAY (MOBILE COMPATIBILITY) ─── */
+  const initAutoPlayVideos = () => {
+    const videos = document.querySelectorAll('video');
+    videos.forEach(video => {
+      // Ensure basic attributes are set
+      video.muted = true;
+      video.autoplay = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      
+      // Try play immediately
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // If browser blocked it, try again on first user interaction
+          const playOnUserAction = () => {
+            video.play();
+            document.removeEventListener('touchstart', playOnUserAction);
+          };
+          document.addEventListener('touchstart', playOnUserAction);
+        });
+      }
+    });
+  };
+
+  initAutoPlayVideos();
+
+  /* ─── INSTAGRAM REELS FIX ─── */
+  // Sometimes mobile browsers need an extra nudge to load IG embeds
+  // This polling mechanism is highly effective for phone browsers (Safari/Chrome/iOS/Android)
+  const pollForInsta = () => {
+    let attempts = 0;
+    const maxAttempts = 10;
+    const interval = setInterval(() => {
+      attempts++;
+      if (window.instgrm && window.instgrm.Embeds) {
+        window.instgrm.Embeds.process();
+        // Once found, we don't necessarily stop as more elements might be rendering
+      }
+      if (attempts >= maxAttempts) clearInterval(interval);
+    }, 1000);
+  };
+
+  if (document.readyState === 'complete') {
+    pollForInsta();
+  } else {
+    window.addEventListener('load', pollForInsta);
+  }
+});
+
+/* ─── GSAP ANIMATIONS — optional, only run if GSAP is available ─── */
+(() => {
+  if (typeof gsap === 'undefined') {
+    console.warn('[Lokum] GSAP not found – animations skipped.');
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.ticker.fps(60);
+
+  /* ─────────────────────────────────────────
+     HELPER: safe querySelector
+  ───────────────────────────────────────── */
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
   /* ================= LAZY LOAD ================= */
   function initLazyLoading() {
-    const lazyImages = document.querySelectorAll(".lazy");
+    const lazyImages = $$('.lazy');
+    if (!lazyImages.length) return;
+
     const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
+        if (!entry.isIntersecting) return;
+        const img = entry.target;
+        if (img.dataset.src) {
           img.src = img.dataset.src;
-          img.classList.remove("lazy");
-          obs.unobserve(img);
+          img.classList.remove('lazy');
         }
+        obs.unobserve(img);
       });
     });
+
     lazyImages.forEach(img => observer.observe(img));
   }
 
   /* ================= GALLERY ================= */
   function initGallery() {
-    const gallery = document.querySelector(".gallery-wrapper");
-    const images = document.querySelectorAll(".gallery-item img");
+    const galleryItems = $$('.gallery-item');
+    if (!galleryItems.length) return;
 
-    gsap.utils.toArray(".gallery-item").forEach(item => {
+    galleryItems.forEach(item => {
       gsap.from(item, {
-        y: 120,
+        y: 100,
         opacity: 0,
-        duration: 1.2,
-        ease: "power4.out",
-        scrollTrigger: { trigger: item, start: "top 90%" }
+        duration: 1.1,
+        ease: 'power4.out',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 92%',
+          once: true,
+        },
       });
     });
 
-    images.forEach((img, i) => {
-      img.style.willChange = "transform";
+    const galleryImgs = $$('.gallery-item img');
+    galleryImgs.forEach((img, i) => {
       gsap.to(img, {
-        y: "+=10",
-        duration: 3 + i * 0.2,
+        y: '+=8',
+        duration: 2.8 + i * 0.15,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: 'sine.inOut',
+        delay: i * 0.1,
       });
     });
 
-    document.querySelectorAll(".gallery-item").forEach(item => {
-      const img = item.querySelector("img");
-      item.addEventListener("mouseenter", () =>
-        gsap.to(img, { scale: 1.03, duration: 0.6 })
+    galleryItems.forEach(item => {
+      const img = item.querySelector('img');
+      if (!img) return;
+      item.addEventListener('mouseenter', () =>
+        gsap.to(img, { scale: 1.04, duration: 0.5, overwrite: 'auto' })
       );
-      item.addEventListener("mouseleave", () =>
-        gsap.to(img, { scale: 1, duration: 0.8 })
+      item.addEventListener('mouseleave', () =>
+        gsap.to(img, { scale: 1, duration: 0.7, overwrite: 'auto' })
       );
     });
+
+    const gallery = $('.gallery-wrapper');
+    if (!gallery) return;
 
     let lastMove = 0;
-    gallery?.addEventListener("mousemove", e => {
+    gallery.addEventListener('mousemove', e => {
       const now = performance.now();
-      if (now - lastMove < 50) return;
+      if (now - lastMove < 33) return;
       lastMove = now;
-
-      const centerX = window.innerWidth / 2;
-      const offsetX = (e.clientX - centerX) / centerX;
-
-      images.forEach((img, i) => {
-        const depth = (i + 1) * 10;
-        gsap.to(img, { x: offsetX * depth, duration: 1 });
+      const offsetX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+      galleryImgs.forEach((img, i) => {
+        gsap.to(img, {
+          x: offsetX * ((i + 1) * 8),
+          duration: 0.9,
+          ease: 'power2.out',
+          overwrite: 'auto',
+        });
       });
-    });
+    }, { passive: true });
 
-    gallery?.addEventListener("mouseleave", () => {
-      images.forEach(img => gsap.to(img, { x: 0, duration: 1.6 }));
+    gallery.addEventListener('mouseleave', () => {
+      galleryImgs.forEach(img =>
+        gsap.to(img, { x: 0, duration: 1.4, ease: 'power3.out', overwrite: 'auto' })
+      );
     });
   }
 
   /* ================= THEME ================= */
   function initTheme() {
-    const toggle = document.getElementById("themeToggle");
-    const label = document.getElementById("themeLabel");
+    const toggle = $('#themeToggle');
+    const label = $('#themeLabel');
 
-    if (localStorage.getItem("theme") === "light") {
-      document.body.classList.add("light-mode");
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode');
     }
 
-    function updateLabel() {
+    const updateLabel = () => {
       if (!label) return;
-      label.textContent = document.body.classList.contains("light-mode")
-        ? "Light Mode"
-        : "Dark Mode";
-    }
+      const isLight = document.body.classList.contains('light-mode');
+      label.textContent = isLight ? 'Light Mode' : 'Dark Mode';
+    };
 
     updateLabel();
 
-    toggle?.addEventListener("click", () => {
-      document.body.classList.toggle("light-mode");
+    toggle?.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
       localStorage.setItem(
-        "theme",
-        document.body.classList.contains("light-mode") ? "light" : "dark"
+        'theme',
+        document.body.classList.contains('light-mode') ? 'light' : 'dark'
       );
       updateLabel();
     });
   }
 
-  /* ================= MUSIC ================= */
-  function initMusic() {
-    const music = document.getElementById("bgMusic");
-    const musicToggleBtn = document.getElementById("musicToggle");
 
-    musicToggleBtn?.addEventListener("click", () => {
-      if (!music) return;
-      if (music.paused) {
-        music.volume = 0.3;
-        music.play();
-        musicToggleBtn.textContent = "❚❚";
-      } else {
-        music.pause();
-        musicToggleBtn.textContent = "♪";
+  /* ================= SEASONAL / EVENTS EFFECTS ================= */
+  function initSeasonalEffects() {
+    const eidSection = $('.eid-section');
+    if (eidSection) {
+      const eidHeading = $('.eid-section .eid-main-title') || $('.eid-section .section-heading-light');
+      if (eidHeading) {
+        gsap.from(eidHeading, {
+          scrollTrigger: { trigger: eidSection, start: 'top 85%', once: true },
+          y: 50, opacity: 0, duration: 1.4, ease: 'power3.out',
+        });
       }
+      const eidPlatter = $('.eid-platter');
+      if (eidPlatter) {
+        gsap.from(eidPlatter, {
+          scrollTrigger: { trigger: eidPlatter, start: 'top 85%', once: true },
+          y: 30, opacity: 0, duration: 1.2, ease: 'power3.out',
+        });
+      }
+    }
+
+    const eventCards = $$('.event-card');
+    if (eventCards.length) {
+      gsap.from(eventCards, {
+        scrollTrigger: { trigger: '.events-section', start: 'top 80%', once: true },
+        y: 60, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.15,
+      });
+    }
+  }
+
+  /* ================= AUTOPLAY VIDEOS ================= */
+  // Now handled at the top for reliability
+
+
+  /* ================= STORY PARALLAX ================= */
+  function initStoryParallax() {
+    const section = $('.story-section');
+    if (!section) return;
+
+    gsap.to('.img-main', {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      },
+      y: -50,
+      ease: 'none'
+    });
+
+    gsap.to('.img-offset-wrap', {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      },
+      y: -120,
+      ease: 'none'
     });
   }
 
- 
-  /* ================= IFTAR TIMER ================= */
- function initIftarTimer() {
-  const countdownEl = document.getElementById("iftarCountdown");
-  if (!countdownEl) return;
+  /* ================= CONTACT ================= */
+  function initContactAnimations() {
+    const cards = $$('.luxury-contact-card');
+    if (!cards.length) return;
 
-  // Bengaluru Iftar time
-  const IFTAR_HOUR = 18;  // 6 PM
-  const IFTAR_MINUTE = 30; // 6:30 PM
+    // Staggered reveal
+    gsap.from(cards, {
+      scrollTrigger: {
+        trigger: '.premium-contact-suite',
+        start: 'top 80%',
+        once: true
+      },
+      x: 50,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: 'power3.out'
+    });
 
-  function updateTimer() {
-    const now = new Date();
-    const iftarTime = new Date();
-    iftarTime.setHours(IFTAR_HOUR, IFTAR_MINUTE, 0, 0);
+    // Mouse follow glow
+    cards.forEach(card => {
+      const glow = card.querySelector('.card-glow');
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        gsap.to(glow, {
+          opacity: 1,
+          duration: 0.4,
+          '--x': `${x}px`,
+          '--y': `${y}px`,
+          background: `radial-gradient(circle at ${x}px ${y}px, rgba(197, 160, 89, 0.15), transparent 70%)`
+        });
+      });
 
-    // If time passed, move to next day
-    if (now > iftarTime) {
-      iftarTime.setDate(iftarTime.getDate() + 1);
-    }
-
-    const diff = iftarTime - now;
-    const h = Math.floor(diff / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-
-    // Update countdown text
-    countdownEl.textContent =
-      diff <= 0
-        ? "✨ Iftar Time — Join Us 🌙"
-        : `${h}h ${m}m ${s}s remaining`;
-
-    // Add glow effect when Iftar is near (<1h)
-    if (diff <= 3600000 && diff > 0) {
-      countdownEl.classList.add("glow");
-    } else {
-      countdownEl.classList.remove("glow");
-    }
-  }
-
-  updateTimer();
-  setInterval(updateTimer, 1000);
-}
-
-// Initialize on DOM ready
-document.addEventListener("DOMContentLoaded", initIftarTimer);
-
-  /* ================= AUTOPLAY ALL VIDEOS ================= */
-  function initAutoPlayVideos() {
-    const videos = document.querySelectorAll("video");
-    videos.forEach(video => {
-      video.loop = true;
-      video.autoplay = true;
-      video.muted = true;
-      video.play().catch(() => {});
+      card.addEventListener('mouseleave', () => {
+        gsap.to(glow, { opacity: 0, duration: 0.6 });
+      });
     });
   }
 
   /* ================= INIT ALL ================= */
-  document.addEventListener("DOMContentLoaded", () => {
-    initNavigation();
-    initLazyLoading();
-    initGallery();
-    initTheme();
-    initMusic();
-    initRamzanPopup();
-    initIftarTimer();
-    initAutoPlayVideos();
-  });
+  // script.js is already at end of <body> so DOM is ready — no DOMContentLoaded needed
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 50,
+      easing: 'ease-out-cubic'
+    });
+  }
+
+  ScrollTrigger.refresh();
+  initLazyLoading();
+  initGallery();
+  initTheme();
+  initSeasonalEffects();
+  // initAutoPlayVideos(); // Moved to top
+  initContactAnimations();
+  initStoryParallax();
 })();
-// ================= RAMZAN OFFER POPUP =================
-function initRamzanOfferPopup() {
-  const popup = document.getElementById("RamzanOfferPopup");
-  if (!popup) return;
-
-  const closeBtn = popup.querySelector(".ramzan-close");
-
-  // Open popup
-  function openPopup() {
-    popup.classList.add("active");
-    document.body.style.overflow = "hidden"; // prevent background scroll
-
-    // Auto-close after 3 seconds
-    setTimeout(() => closePopup(), 3000);
-  }
-
-  // Close popup
-  function closePopup() {
-    popup.classList.remove("active");
-    document.body.style.overflow = ""; // restore scroll
-  }
-
-  // Close button click
-  closeBtn?.addEventListener("click", closePopup);
-
-  // Close when clicking outside content
-  popup.addEventListener("click", e => {
-    if (e.target === popup) closePopup();
-  });
-
-  // Auto-open after 1 second
-  window.addEventListener("load", () => {
-    setTimeout(openPopup, 1000);
-  });
-}
-
-// Initialize on DOMContentLoaded
-document.addEventListener("DOMContentLoaded", () => {
-  initRamzanOfferPopup();
-});
