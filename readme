@@ -1,72 +1,73 @@
-The Lokum – Anatolia & Beyond
-The Lokum is a high-end, premium restaurant website designed to showcase the "Fire & Tradition" of Anatolian and Turkish cuisine. Located in Bengaluru, India, the digital experience mirrors the restaurant's focus on heritage, inherited techniques, and authentic Turkish hospitality.
+# The Lokum – Anatolia & Beyond
 
-🍽️ Project Overview
-The website serves as a luxury digital storefront featuring:
+Welcome to the digital home of The Lokum, a premium culinary destination located in the heart of Bengaluru, India. This project is a high-end, immersive frontend experience designed to mirror the Fire & Tradition of authentic Anatolian and Turkish cuisine.
 
-Immersive Visuals: High-quality video backgrounds and cinematic zoom effects in the hero section.
+![The Lokum Brand](images/logo-footer.png)
 
-Brand Philosophy: A dedicated "Our Story" section detailing the restaurant's origins and culinary intention.
+## The Vision
+The Lokum isn't just a restaurant; it's a sensory journey. This website was built to capture that essence—combining modern web technology with timeless heritage storytelling. From the warmth of the wood-fired ovens to the intricate geometry of Anatolian art, every pixel is curated to offer a luxury digital storefront.
 
-Seasonal Features: Integrated Ramzan Special sections highlighting curated platters and traditional dishes.
+## The Menu Experience
+The standalone menu page is designed as a 3D Digital Gallery. 
+- 3D Tilt Interaction: Powered by VanillaTilt.js, each menu page reacts to your touch or mouse, creating a physical sense of browsing a real menu.
+- Curated Categories: Beyond Turkish classics, the menu features specialized sections like Kashmiri Specials, authentic Pides, and an extensive Mezze palette.
+- Ambient Atmosphere: A subtle scaling animation on the background and watermark typography ensures the interface feels alive.
 
-Digital Menu: A standalone, interactive menu page designed for high visual impact.
+Key Features
 
-Premium Interactions: Sophisticated animations and smooth scrolling powered by GSAP.
+ 1. Cinematic Visual Storytelling
+- Hero Experience: A high-definition video background that immediately immerses users in the restaurant's atmosphere.
+- Story Section: A parallax-driven Our Story layout that uses staggered image stacks to tell the tale of Turkish hospitality.
 
- Key Features
-1. Advanced Animation System
-The site utilizes the GreenSock Animation Platform (GSAP) and ScrollTrigger for high-performance, scroll-based animations.
+### 2. Advanced Interaction System
+- GSAP Magic: Powered by the GreenSock Animation Platform, the site features ultra-smooth, high-performance transitions.
+- Ultra-Smooth Gallery: A 3D-perspective gallery where items react to your mouse movement and scroll position using ScrollTrigger.
+- Moving Moments: A cinematic video grid showing the rhythm of the kitchen with live-pulsing indicators and hover-zoom effects.
+- Luxury Contact Suite: Interactive contact cards featuring a mouse-follow glow effect for a premium, tactile feel.
 
-Smooth Scrolling: Implementation of ScrollSmoother for a luxurious browsing feel.
+ 3. Smart & Responsive Architecture
+- Asymmetric Navigation: A unique, floating navbar that adapts on scroll and features a custom-animated hamburger menu.
+- Adaptive Theme: Supports both Dark Mode and Light Mode to suit different user preferences.
+- Continental Specials: A dedicated feature-grid for global flavors including Chicken Caesar Salads, Crumb Fried Chicken, and Chicken Alfredo.
+- Mobile Optimized: Every interaction—from the Instagram reels fix to the video autoplay—is engineered for seamless performance on iOS and Android.
 
-Dynamic Gallery: An "Ultra Smooth Gallery" with 3D perspective shifts and active item scaling.
+ 4. Heritage & Spaces
+- Ramzan Specials: Integrated logic for seasonal promotions, including countdown timers and dedicated platter highlights.
+- The Majlis: A dedicated section showcasing gathering spaces with cultural patterns and atmospheric glow effects.
 
-Interactive Navigation: A responsive navbar that adapts on scroll and includes an asymmetric hamburger menu with unique "X" transitions.
+5. Seamless External Integrations
+- Online Dining: Integrated direct ordering via Zomato and Swiggy (coming soon) with a focus on artisan packaging.
+- Priority Reservations: Native links to Dineout, EazyDiner, and Zomato Gold for curated table access.
+- Trust Indicators: Real-time look at customer sentiment with an integrated Google Reviews 4.5+ star badge.
 
-2. Specialized Components
-Ramzan Offer Popup: A timed, auto-opening popup for seasonal promotions with built-in auto-close functionality.
+ Technical Stack
+- HTML5: Pure semantic structure for SEO and accessibility.
+- CSS3: Extensive use of CSS variables, complex gradients, 3D transforms, and backdrop-filter for that glassmorphism look.
+- JavaScript: Custom modular architecture wrapped in a safe IIFE.
+- Libraries: GSAP, ScrollTrigger, AOS, VanillaTilt, Instagram Embed API.
 
-Iftar Timer: Real-time logic for countdowns during the Ramzan season.
+## Design Philosophy
+Unlike most modern quick websites, The Lokum focuses on a premium, cinematic pace. 
+- High-Art Typography: Pairing Playfair Display with Inter to create a balance of tradition and modernity.
+- Selective Motion: Animations are intentional, designed to guide the eye rather than distract from the photography.
+- No Placeholders: Every image and video in this repository is a high-fidelity asset shot specifically for the brand.
 
-Image Modal Viewer: A custom modal system for high-resolution menu viewing.
+## Project Structure
+index.html: The grand landing page
+style.css: The master design system
+script.js: The interactive engine
+menu/menu.html: Dedicated menu experience
+images/: Brand assets and photography
+videos/: Cinematic hero clips
+food/: Specialized food photography
+Culinary Journey/: Heritage-specific visual assets
 
-Lazy Loading: Native intersection observers to optimize image loading performance.
+## Local Setup
+To experience The Lokum in its full glory:
+1. Clone the Repository: Download the project files to your local machine.
+2. Use a Local Server: Because the site uses external libraries and video assets, it is highly recommended to run it through a local server.
+3. Browser Support: Optimized for modern versions of Chrome, Safari, and Edge.
 
-3. Luxury Design Aesthetic
-Color Palette: Deep blacks (#0a0908), soft creams (#efe4d8), and bronze/gold accents (#c08a50).
-
-Typography: An elegant pairing of Playfair Display (Serif) for headings and Inter (Sans-serif) for body text.
-
-Technical Stack
-HTML5: Semantic structure for SEO and accessibility.
-
-CSS3 (Post-modern): Utilizes CSS variables, complex gradients, 3D transforms, and advanced backdrop filters.
-
-JavaScript (ES6+): Custom modular architecture with an Immediately Invoked Function Expression (IIFE) for scope protection.
-
-Libraries:
-
-GSAP (Core): Animation engine.
-
-ScrollTrigger: Scroll-based interaction.
-
-ScrollSmoother: Premium scrolling physics.
-
-📁 File Structure
-index.html: The primary landing page containing the story, gallery, and seasonal sections.
-
-menu.html: The visual menu experience with floating background textures.
-
-style.css: The central design system containing luxury variables and responsive layout logic.
-
-script.js: The engine managing animations, popups, and interactive navigation.
-
- Setup Instructions
-Clone the repository to your local environment.
-
-Asset Hosting: Ensure the images/ and videos/ folders contain the high-quality media referenced in the HTML (e.g., logo-web.png, fallback-bg.jpg, and the hero MP4).
-
-Local Server: Due to GSAP's ScrollTrigger and external script loading, it is recommended to run the project via a local server (like Live Server in VS Code) for the best performance.
-
-Developed by Mehdi – © 2026 THE LOKUM
+## Credits & Legal
+Built by Mehdi.
+© 2026 THE LOKUM. All rights reserved.
